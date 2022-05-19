@@ -1,0 +1,7 @@
+{
+  "name": "fitmeapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
