@@ -24,3 +24,22 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+:root {
+	--ion-color-fave: #0b6b4b;
+	--ion-color-fave-rgb: 11,107,75;
+	--ion-color-fave-contrast: #ffffff;
+	--ion-color-fave-contrast-rgb: 255,255,255;
+	--ion-color-fave-shade: #0a5e42;
+	--ion-color-fave-tint: #237a5d;
+}
+
+.ion-color-fave {
+	--ion-color-base: var(--ion-color-fave);
+	--ion-color-base-rgb: var(--ion-color-fave-rgb);
+	--ion-color-contrast: var(--ion-color-fave-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-fave-contrast-rgb);
+	--ion-color-shade: var(--ion-color-fave-shade);
+	--ion-color-tint: var(--ion-color-fave-tint);
+}

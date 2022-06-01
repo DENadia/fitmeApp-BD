@@ -1,0 +1,20 @@
+<ion-header class="ion-no-border" translucent="true">
+  <ion-toolbar translucent="true">
+    <ion-buttons slot="start">
+      <ion-back-button color="dark"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-card>
+  <img src="/assets/backgrounds/welcomepage.jpg" />
+</ion-card>
+<ion-content>
+  <div class="log">
+    <p>Are you new? Join our comunity!</p>
+    <ion-button [routerLink]="['/signup']" class="log-btn" color="dark">Sign up</ion-button>
+  </div>
+  <div class="log">
+    <p>Already a member? Login!</p>
+    <ion-button [routerLink]="['/login']" class="log-btn" color="dark">Login</ion-button>
+  </div>
+</ion-content>

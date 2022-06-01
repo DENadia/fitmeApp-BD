@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-grid>
+    <h1>Sign up</h1>
+<ion-item lines="full">
+  <ion-icon name="person" color="dark"></ion-icon>
+  <ion-input [(ngModel)]="name" type="text" required="true" placeholder="Name"></ion-input>
+</ion-item>
+
+<ion-item lines="full">
+  <ion-icon name="mail" color="dark"></ion-icon>
+  <ion-input [(ngModel)]="email" type="email" required="true" placeholder="Email"></ion-input>
+</ion-item>
+
+<ion-item lines="full">
+  <ion-icon name="lock-closed" color="dark"></ion-icon>
+  <ion-input [(ngModel)]="password" type="text"required="true" placeholder="Password"></ion-input>
+</ion-item>
+
+<ion-item lines="full">
+  <ion-icon name="lock-closed" color="dark"></ion-icon>
+  <ion-input [(ngModel)]="confirm_password" type="text" required="true" placeholder="Confirm password"></ion-input>
+</ion-item>
+
+<ion-button class="ion-margin-top" type="submit" expand="block" color="dark" (click)="onSubmit()">
+  Create Account
+</ion-button>
+
+<ion-item  class="ion-text-center">
+  <ion-label>Or</ion-label>
+</ion-item>
+<ion-button class="ion-margin-top" color="dark" expand="block"  [routerLink]="['/login']">Login</ion-button>
+  </ion-grid>
+    
+</ion-content>
+
+

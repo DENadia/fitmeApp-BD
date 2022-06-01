@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="fave"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Routines</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="card-background-page">
+    <ion-card *ngFor="let routine of this.routines" (click)="goToDetails(routine.name)">
+        <img src={{routine.img}}/>
+        <div class="card-title">{{routine.name}}</div>
+      </ion-card>
+</ion-content>

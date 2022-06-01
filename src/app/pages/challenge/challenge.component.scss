@@ -1,0 +1,58 @@
+.top {
+  height: 200px;
+}
+
+.user {
+  padding-top: 45px;
+}
+
+.line {
+  border-right: 5px solid #0b6b4b;
+}
+
+.challenge {
+  text-align: center;
+  background-color: rgb(208, 204, 204);
+}
+
+.challenge-wrapper {
+  background-color: rgb(208, 204, 204);
+  border:1px solid #7d7e7e;
+}
+
+h2 {
+  font-weight: 600;
+  color: #0b6b4b;
+}
+.user-content{
+  font-weight: 600;
+  color:black;
+}
+h3 {
+  font-weight: 600;
+  color: #0b6b4b;
+}
+ h4{
+  font-weight: 600;
+}
+.run {
+  margin: 8px;
+}
+
+.line-bottom {
+  border-bottom: 3px solid #0b6b4b;
+}
+
+.padding-10 {
+  padding-bottom: 10px;
+}
+
+.time {
+  display: flex;
+  align-items: center;
+}
+
+ion-chip {
+  background: #0b6b4b;
+  color: white;
+}

@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="fave"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Today's challenges</ion-title>
+
+  </ion-toolbar>
+
+</ion-header>
+<ion-content>
+  <ion-item lines="none" class="transparent user">
+    <ion-label class="ion-padding-start">
+      <h2>{{user.name}}</h2>
+      <h3 class="tracking-in-expand ion-text-wrap user-content">{{user.intro}}</h3>
+  </ion-label>
+    <ion-avatar class="tilt-in-top-1" style="margin-right: 10px">
+      <img [src]="user.img">
+    </ion-avatar>
+  </ion-item>
+ 
+  <ion-row class="fadeInUp">
+    <ion-col size="12">
+      <ion-card>
+        <ion-card class="run">
+         
+            <ion-item lines="none" class="transparent">
+                <ion-thumbnail>
+                    <img src="assets/images/sport/s1.png">
+                </ion-thumbnail>
+                <ion-label class="ion-margin-start">
+                    <h3 class="line-bottom padding-10">Running</h3>
+                    <div class="time">
+                        <h4>times:</h4>
+                        <ion-chip>30 minutes</ion-chip>
+                    </div>
+                </ion-label>
+            </ion-item>
+            <h6 class="ion-margin">
+              Let's merge with the nature. Go outside, take a 5 minutes walk, jogg for 3 minutes and sprint 2 minutes. Repeat 3 times. You got this!
+            </h6>
+        </ion-card>
+      </ion-card>
+    </ion-col>
+</ion-row>
+<ion-row class="fadeInUp">
+    <ion-col size="12">
+      <ion-card>
+        <ion-card class="run">
+            <ion-item lines="none" class="transparent">
+                <ion-thumbnail>
+                    <img src="assets/images/sport/s2.png">
+                </ion-thumbnail>
+                <ion-label class="ion-margin-start">
+                    <h3 class="line-bottom padding-10">Gym</h3>
+                    <div class="time">
+                        <h4>times:</h4>
+                        <ion-chip>20 minutes</ion-chip>
+                    </div>
+                </ion-label>
+            </ion-item>
+            <h6 class="ion-margin">
+                Get stronger! Get that barbell and grow muscles! Do 15 barbell row, 10 seconds break and repeat. Do this untill failure. Your muslces will tank you!
+            </h6>
+        </ion-card>
+      </ion-card>
+    </ion-col>
+</ion-row>
+</ion-content>

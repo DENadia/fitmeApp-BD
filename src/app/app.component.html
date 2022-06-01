@@ -1,3 +1,23 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane contentId="main-content">
+      <ion-menu contentId="main-content" >
+          <ion-content>
+              <div class="profile">
+                  <ion-avatar style="margin: auto">
+                      <img src="assets/images/user.png">
+                  </ion-avatar>
+                  <h3 class="name">Nadia</h3>
+              </div>
+              <ion-menu-toggle auto-hide="false">
+                  <ion-item  lines="full" class="transparent" *ngFor="let item of pageList" [routerLink]="[item.url]">
+                      <ion-icon slot="start" [name]="item.iconName" color="fave"></ion-icon>
+                      <ion-label>
+                          {{item.displayText}}
+                      </ion-label>
+                  </ion-item>
+              </ion-menu-toggle>
+          </ion-content>
+      </ion-menu>
+      <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

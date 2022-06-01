@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <img src="assets/backgrounds/strongw.png"/>
+  </ion-card>
+
+    <h1>Log In</h1>
+  <form>
+    <form [formGroup]="lForm">
+      <ion-item lines="full">
+          <ion-icon name="person" color="dark"></ion-icon>
+          <ion-input formControlName="name" type="text"></ion-input>
+      </ion-item>
+      <ion-text class="ion-text-center ion-padding-start" color="danger"
+                *ngIf="!lForm.controls.name.valid  && lForm.controls.name.dirty">
+          Username length must be longer than or equal to 6 characters
+      </ion-text>
+      <ion-item lines="full">
+          <ion-icon name="lock-closed"  color="dark"></ion-icon>
+          <ion-input formControlName="pwd" type="password"></ion-input>
+      </ion-item>
+      <ion-text class="ion-text-center ion-padding-start" color="danger"
+                *ngIf="!lForm.controls.pwd.valid  && lForm.controls.pwd.dirty">
+          password Length at 6-15
+      </ion-text>
+  </form>
+
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" color="dark" [disabled]="!lForm.valid" (click)="onLogin()">
+          Sign In
+      </ion-button>
+        <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>
+      </ion-col>
+    </ion-row>
+  </form>
+ 
+</ion-content>

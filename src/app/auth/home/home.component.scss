@@ -1,0 +1,21 @@
+ion-title{
+  font-size: 1.8em;
+  font-weight: bold;
+  color: black;
+}
+ion-header{
+  margin-bottom: 40px;
+}
+.log{
+  margin-top: 40px;
+  text-align: center;
+  p{
+    color: #0b6b4b;
+  }
+  .log-btn{
+    width: 85%;
+    height: 50px;
+    text-transform: none;
+    font-size: 1.6rem;
+  }
+}
