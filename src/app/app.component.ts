@@ -1,8 +1,9 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import {Router} from '@angular/router';
 import { StatusBar } from '@capacitor/status-bar';
-import { IonRouterOutlet, Platform } from '@ionic/angular';
+import { AlertController, IonRouterOutlet, LoadingController, Platform } from '@ionic/angular';
 import { ToastProvider } from 'src/providers';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent {
   timePeriodToExit = 2000;
   @ViewChildren(IonRouterOutlet) routerOutlets: QueryList<IonRouterOutlet>;
   public pageList = [
-     {iconName: 'person', displayText: 'Account', url: '/account'},
+     {iconName: 'person', displayText: 'Account', url: '/profile'},
       {iconName: 'barbell', displayText: 'Workout List', url: '/workout-list'},
       {iconName: 'accessibility', displayText: 'Yoga List', url: '/yoga-list'},
       {iconName: 'medkit', displayText: 'Pain relief List', url: '/pain-relief-list'},
@@ -26,7 +27,11 @@ export class AppComponent {
   constructor(
       private platform: Platform,
       private toastProvider: ToastProvider,
-      private router: Router
+      private router: Router,
+      private authService: AuthService,
+    private loadingController: LoadingController,
+    private alertController: AlertController
+
   ) {
       this.initializeApp();
   }
@@ -54,5 +59,9 @@ export class AppComponent {
               }
           });
       });
+  }
+  async logout(){
+    await this.authService.logout();
+    this.router.navigateByUrl('/welcome', {replaceUrl:true});
   }
 }

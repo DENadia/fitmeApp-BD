@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { timer } from 'rxjs';
-
+import {Router} from '@angular/router';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -61,11 +63,17 @@ export class DashboardComponent implements OnInit {
       }
     ]
   
-  }]
+  }];
 
  
  public today;
-  constructor() {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private loadingController: LoadingController,
+    private alertController: AlertController
+
+  ) {
   }
 
   ngOnInit() {
@@ -77,7 +85,7 @@ export class DashboardComponent implements OnInit {
            name:`${elem.routineStructure[0].name}`,
            exercise:`${elem.routineStructure[0].exercises[0].sets.length}`
         });
-      })
+      });
   }
-
+ 
 }

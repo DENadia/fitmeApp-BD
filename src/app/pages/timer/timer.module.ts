@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SignupComponent } from './signup.component';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
-
+import { TimerComponent } from './timer.component';
+import {NgxGaugeModule} from 'ngx-gauge';
 @NgModule({
-  declarations: [SignupComponent],
+  declarations: [TimerComponent],
   imports: [
     CommonModule,
     IonicModule,
-    FormsModule,
-    ReactiveFormsModule,
+    NgxGaugeModule,
     RouterModule.forChild([
       {
-        path:'', component:SignupComponent
+        path:'', component:TimerComponent
       }
     ])
   ]
 })
-export class SignupModule { }
+export class TimerModule { }
+
+
+
+

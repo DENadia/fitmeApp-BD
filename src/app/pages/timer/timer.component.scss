@@ -1,0 +1,14 @@
+:host {
+  ::ng-deep.reading-affix {
+    font-size: 44px;
+    font-weight: 400 !important;
+  }
+
+  ion-button {
+    --padding-start: 55px !important;
+    --padding-end: 55px !important;
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 2px;
+  }
+}

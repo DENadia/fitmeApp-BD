@@ -11,34 +11,25 @@
   </ion-card>
 
     <h1>Log In</h1>
-  <form>
-    <form [formGroup]="lForm">
-      <ion-item lines="full">
-          <ion-icon name="person" color="dark"></ion-icon>
-          <ion-input formControlName="name" type="text"></ion-input>
-      </ion-item>
-      <ion-text class="ion-text-center ion-padding-start" color="danger"
-                *ngIf="!lForm.controls.name.valid  && lForm.controls.name.dirty">
-          Username length must be longer than or equal to 6 characters
-      </ion-text>
-      <ion-item lines="full">
-          <ion-icon name="lock-closed"  color="dark"></ion-icon>
-          <ion-input formControlName="pwd" type="password"></ion-input>
-      </ion-item>
-      <ion-text class="ion-text-center ion-padding-start" color="danger"
-                *ngIf="!lForm.controls.pwd.valid  && lForm.controls.pwd.dirty">
-          password Length at 6-15
-      </ion-text>
-  </form>
+  
+ <form [formGroup]="credential" (ngSubmit)="login()">
+   <ion-item fill="solid" class="ion-margin-bottom">
+     <ion-input type="email" placeholder="Email" formControlName="email">
+     </ion-input>
+     <ion-note slot="error" *ngIf="(email.dirty||email.touched) && email.errors">Email is invalid</ion-note>
+   </ion-item>
 
-    <ion-row>
-      <ion-col>
-        <ion-button expand="block" color="dark" [disabled]="!lForm.valid" (click)="onLogin()">
-          Sign In
-      </ion-button>
-        <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>
-      </ion-col>
-    </ion-row>
-  </form>
- 
+   <ion-item fill="solid" class="ion-margin-bottom">
+    <ion-input type="password" placeholder="Password" formControlName="password">
+    </ion-input>
+    <ion-note slot="error" *ngIf="(password.dirty|| password.touched) && password.errors">Password needs to be at least 6 characters long</ion-note>
+  </ion-item>
+
+   <ion-button expand="full" type="submit" [disabled]="!credential.valid" color="dark">Login</ion-button>
+ </form>
+ <div><a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a></div>
+ <ion-item  class="ion-text-center">
+  <ion-label>You don't have an account?</ion-label>
+</ion-item>
+<ion-button class="ion-margin-top" color="dark" expand="block"  [routerLink]="['/signup']">Register</ion-button>
 </ion-content>

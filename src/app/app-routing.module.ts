@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-
+import{redirectUnauthorizedTo, redirectLoggedInTo, canActivate} from '@angular/fire/auth-guard';
+const redirectUnauthorizedToLogin=()=>redirectUnauthorizedTo(['login']);
+const redirectLoggedInHome=()=> redirectLoggedInTo(['tabs']);
 const routes: Routes = [
   {
     path:'',
@@ -17,7 +19,8 @@ const routes: Routes = [
   },
   {
      path: 'login', 
-     loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) 
+     loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule),
+     ...canActivate(redirectLoggedInHome)
   },
   {
     path: 'signup', 
@@ -27,9 +30,17 @@ const routes: Routes = [
   path: 'forgot-password', 
   loadChildren: () => import('./auth/forgotpassword/forgotpassword.module').then(m => m.ForgotpasswordModule) 
 },
+{
+  path: 'profile',
+  loadChildren: () => import('./auth/profile/profile.module').then(m => m.ProfileModule)
+},
+{
+  path: 'timer',
+  loadChildren: () => import('./pages/timer/timer.module').then(m => m.TimerModule)
+},
   {
     path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
   }
 ];
 @NgModule({
