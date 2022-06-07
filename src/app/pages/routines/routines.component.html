@@ -7,8 +7,8 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="card-background-page">
-    <ion-card *ngFor="let routine of this.routines" (click)="goToDetails(routine.name)">
-        <img src={{routine.img}}/>
+    <ion-card *ngFor="let routine of routines" (click)="goToDetails(routine.name)">
+        <img [src]="routine.imageUrl"/>
         <div class="card-title">{{routine.name}}</div>
       </ion-card>
 </ion-content>

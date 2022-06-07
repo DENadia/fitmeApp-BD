@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatafirebaseService } from 'src/app/services/datafirebase.service';
 
 @Component({
   selector: 'app-routines',
@@ -6,25 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./routines.component.scss'],
 })
 export class RoutinesComponent implements OnInit {
-  routines = [{
-    name: 'workout',
-    img: "assets/backgrounds/workout.jpg"
-  },
-    {
-      name: 'yoga',
-      img: "assets/backgrounds/yoga.jpg"
-    },
-    {
-      name:'streching',
-      img: "assets/backgrounds/painrelief.png"
-
-    }
-];
-  constructor() { }
+  routines=null;
+  constructor(private dataFirebase: DatafirebaseService) {
+    this.dataFirebase.getCategories().subscribe((res)=>{
+      console.log(res);
+      this.routines=res;
+      });
+   }
 
   ngOnInit() {}
   public goToDetails(name):void{
     console.log("click pe o rutina "+ name);
+    console.log(this.routines[1]);
   }
 
 }
