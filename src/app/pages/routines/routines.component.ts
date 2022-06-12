@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DatafirebaseService } from 'src/app/services/datafirebase.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { DatafirebaseService } from 'src/app/services/datafirebase.service';
 })
 export class RoutinesComponent implements OnInit {
   routines=null;
-  constructor(private dataFirebase: DatafirebaseService) {
+  constructor(private dataFirebase: DatafirebaseService,
+    private router: Router) {
     this.dataFirebase.getCategories().subscribe((res)=>{
       console.log(res);
       this.routines=res;
@@ -16,9 +18,8 @@ export class RoutinesComponent implements OnInit {
    }
 
   ngOnInit() {}
-  public goToDetails(name):void{
-    console.log("click pe o rutina "+ name);
-    console.log(this.routines[1]);
+  public goToDetails(name): void{
+    this.router.navigateByUrl(`/${name}`);
   }
 
 }

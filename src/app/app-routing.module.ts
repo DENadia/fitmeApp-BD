@@ -38,6 +38,14 @@ const routes: Routes = [
   path: 'timer',
   loadChildren: () => import('./pages/timer/timer.module').then(m => m.TimerModule)
 },
+{
+path: 'streching',
+loadChildren: ()=> import ('./pages/streching/streching.module').then(m=>m.StrechingModule)
+},
+{
+path: 'workout',
+loadChildren: ()=> import ('./pages/workout/workout.module').then(m=>m.WorkoutModule)
+},
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),

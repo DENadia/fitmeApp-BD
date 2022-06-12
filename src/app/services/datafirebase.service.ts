@@ -18,4 +18,9 @@ export class DatafirebaseService {
     const categoriesRef=collection(this.firestore, 'categories');
     return collectionData(categoriesRef, {idField: 'id'}) as Observable<Routines[]>;
   }
+  getMusclesGroups(id: string){
+    const groupsRef=collection(this.firestore,`categories/${id}/muscles-groups`);
+    return collectionData(groupsRef,
+    {idField: 'id'}) as Observable<any[]>;
+  }
 }

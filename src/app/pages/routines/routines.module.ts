@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RoutinesComponent } from './routines.component';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { StrechingComponent } from '../streching/streching.component';
 
 
 
@@ -13,7 +14,8 @@ import { IonicModule } from '@ionic/angular';
     IonicModule,
     RouterModule.forChild([
       {
-        path:'', component: RoutinesComponent
+        path:'',
+        component: RoutinesComponent,
       }
     ])
   ]
