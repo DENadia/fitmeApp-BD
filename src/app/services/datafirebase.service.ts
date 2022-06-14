@@ -3,6 +3,7 @@ import { Auth } from '@angular/fire/auth';
 import { addDoc, collectionData, deleteDoc, doc, docData, Firestore, updateDoc } from '@angular/fire/firestore';
 import { collection } from '@firebase/firestore';
 import { Observable } from 'rxjs';
+import { Exercise } from '../models/exercise';
 import { MusclesCategory } from '../models/muscles-category';
 export interface Routines {
   id?: string;
@@ -14,7 +15,6 @@ export interface Routines {
 })
 export class DatafirebaseService {
 
-  user=this.auth.currentUser.uid;
   constructor(private firestore: Firestore, private auth: Auth) {
   }
   getCategories(): Observable<Routines[]>{
@@ -23,28 +23,54 @@ export class DatafirebaseService {
   }
   getMusclesGroups(){
     const groupsRef=collection(this.firestore,`categories/workout/muscles-groups`);
-    return collectionData(groupsRef) as Observable<any[]>;
+    return collectionData(groupsRef, {idField:'categoryId'}) as Observable<any[]>;
   }
-  getUserMusclesGroups(){
-    const grouptRef=collection(this.firestore, `users/${this.user}/categories/workout/muscles-groups`);
-    return collectionData(grouptRef, {idField: 'categoryId'}) as Observable<MusclesCategory[]>;
+  getUserMusclesGroups(idUser: string): Observable<MusclesCategory[]>{
+    const grouptRef=collection(this.firestore, `users/${idUser}/categories/workout/muscles-groups`);
+    return collectionData(grouptRef, {idField:'categoryId'}) as Observable<MusclesCategory[]>;
   }
-  getUserMusclesGroupById( id: string){
-    const grouptRef=doc(this.firestore, `users/${this.auth.currentUser.uid}/categories/workout/muscles-groups/${id}`);
+  getUserMusclesGroupById(idUser: string, id: string){
+    const grouptRef=doc(this.firestore, `users/${idUser}/categories/workout/muscles-groups/${id}`);
     return docData(grouptRef,{idField:'categoryId'}) as Observable<MusclesCategory>;
   }
-  addUserMuscles(category: MusclesCategory){
-    const categoryRef =collection(this.firestore, `users/${this.user}/categories/workout/muscles-groups`);
+  addUserMuscles(idUser: string,category: MusclesCategory){
+    const categoryRef=collection(this.firestore, `users/${idUser}/categories/workout/muscles-groups`);
     return addDoc(categoryRef, category);
   }
-  deleteUserMuscle(category: MusclesCategory)
+  deleteUserMuscle(idUser: string,category: MusclesCategory)
   {
-    const categoryRef=doc(this.firestore, `users/${this.user}/categories/workout/muscles-groups/${category.categoryId}`);
+    const categoryRef=doc(this.firestore, `users/${idUser}/categories/workout/muscles-groups/${category.categoryId}`);
     return deleteDoc(categoryRef);
   }
-  updateUserMuscle(category: MusclesCategory)
+  updateUserMuscle(idUser: string,category: MusclesCategory)
   {
-    const categoryRef=doc(this.firestore, `users/${this.user}/categories/workout/muscles-groups/${category.categoryId}`);
+    const categoryRef=doc(this.firestore, `users/${idUser}/categories/workout/muscles-groups/${category.categoryId}`);
     return updateDoc(categoryRef, {categoryName: category.categoryName});
   }
+  getExercises(routine: string, categoryId: string){
+    const groupsRef=collection(this.firestore,`categories/${routine}/muscles-groups/${categoryId}/exercises`);
+    return collectionData(groupsRef) as Observable<any[]>;
+  }
+  getUserExercises(idUser: string): Observable<any[]>{
+    const grouptRef=collection(this.firestore, `users/${idUser}/exercises`);
+    return collectionData(grouptRef, {idField:'exerciseId'}) as Observable<MusclesCategory[]>;
+  }
+  getUserExerciseById(idUser: string, id: string){
+    const grouptRef=doc(this.firestore, `users/${idUser}/exercises/${id}`);
+    return docData(grouptRef,{idField:'categoryId'}) as Observable<MusclesCategory>;
+  }
+  addUserExercise(idUser: string, exercise: Exercise){
+    const categoryRef=collection(this.firestore, `users/${idUser}/exercises`);
+    return addDoc(categoryRef, exercise);
+  }
+  // deleteUserMuscle(idUser: string,category: MusclesCategory)
+  // {
+  //   const categoryRef=doc(this.firestore, `users/${idUser}/categories/workout/muscles-groups/${category.categoryId}`);
+  //   return deleteDoc(categoryRef);
+  // }
+  // updateUserMuscle(idUser: string,category: MusclesCategory)
+  // {
+  //   const categoryRef=doc(this.firestore, `users/${idUser}/categories/workout/muscles-groups/${category.categoryId}`);
+  //   return updateDoc(categoryRef, {categoryName: category.categoryName});
+  // }
 }

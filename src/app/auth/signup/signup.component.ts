@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ChildActivationStart, Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { timer } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
@@ -14,6 +14,8 @@ import { AlertProvider, LoadingProvider } from 'src/providers';
 })
 export class SignupComponent implements OnInit {
   credential: FormGroup;
+  categories=null;
+  exercises: any[] =[];
   constructor(private formBuilder: FormBuilder,
     private loadingControler: LoadingController,
     private authService: AuthService,
@@ -22,6 +24,10 @@ export class SignupComponent implements OnInit {
     private alertProvider: AlertProvider,
     public auth: Auth,
     public dataService: DatafirebaseService) { 
+      this.dataService.getMusclesGroups().subscribe((res)=>{
+        console.log(res);
+        this.categories=res;
+        });
     }
   get name() {
     return this.credential.get('name');
@@ -55,8 +61,16 @@ export class SignupComponent implements OnInit {
         userEmail: this.credential.get('email').value,
         userPhoto: '',
       }).then(() => {
+        this.categories.forEach(category => {
+          this.dataService.addUserMuscles(this.auth.currentUser.uid, {categoryName: category.name});
+          this.dataService.getExercises('workout',category.name).subscribe(reusult=>{
+            reusult.forEach(r=>{
+             this.dataService.addUserExercise(this.auth.currentUser.uid,{exerciseName:r.exercise_name, category:r.category});
+            });
+          });
+         });
+         console.log(this.exercises);
         loading.dismiss();
-        this.showAlert('Registration success!', 'Welcome to FitMe');
         this.router.navigateByUrl('/login', { replaceUrl: true });
       }).catch((error) => {
         loading.dismiss();
@@ -68,7 +82,6 @@ export class SignupComponent implements OnInit {
         this.showAlert('Registration failed', 'Email already in use!');
       }
     });
-   
   }
   async showAlert(header, message) {
     const alert = await this.alertController.create({

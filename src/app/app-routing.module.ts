@@ -46,6 +46,14 @@ loadChildren: ()=> import ('./pages/streching/streching.module').then(m=>m.Strec
 path: 'workout',
 loadChildren: ()=> import ('./pages/workout/workout.module').then(m=>m.WorkoutModule)
 },
+{
+  path: 'workout-list',
+  loadChildren: ()=> import ('./pages/workout-list/workout-list.module').then(m=>m.WorkoutListModule)
+  },
+  {
+    path: 'workout-exercises',
+    loadChildren: ()=> import ('./pages/workout-exercises/workout-exercises.module').then(m=>m.WorkoutExercisesModule)
+    },
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
@@ -53,6 +61,10 @@ loadChildren: ()=> import ('./pages/workout/workout.module').then(m=>m.WorkoutMo
   {
     path: 'modal',
     loadChildren: () => import('./pages/modal/modal.module').then( m => m.ModalPageModule)
+  },
+  {
+    path: 'edit-exercise',
+    loadChildren: () => import('./pages/edit-exercise/edit-exercise.module').then( m => m.EditExercisePageModule)
   }
 ];
 @NgModule({

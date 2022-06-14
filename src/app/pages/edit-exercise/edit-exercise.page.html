@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>edit-exercise</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="stacked">Exercise name</ion-label>
+    <ion-input [(ngModel)]="exerciseName"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Category</ion-label>
+    <ion-select value="Abs" [(ngModel)]="category">
+      <ion-select-option value="Abs">Abs</ion-select-option>
+      <ion-select-option value="Back">Back</ion-select-option>
+      <ion-select-option value="Biceps">Biceps</ion-select-option>
+      <ion-select-option value="Cardio">Cardio</ion-select-option>
+      <ion-select-option value="Chest">hest</ion-select-option>
+      <ion-select-option value="Legs">Legs</ion-select-option>
+      <ion-select-option value="Shoulders">Shoulders</ion-select-option>
+      <ion-select-option value="Triceps">Triceps</ion-select-option>
+    </ion-select>
+  </ion-item>
+<ion-button expand="block" color="success" (click)="addExercise()">Add</ion-button>
+</ion-content>

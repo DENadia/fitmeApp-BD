@@ -16,16 +16,6 @@ userData: any;
     private afs: Firestore,
     private loadinControl: LoadingController,
     private toaster: ToastController) { 
-      // this.auth.onAuthStateChanged.subscribe((user) => {
-      //   if (user) {
-      //     this.userData = user;
-      //     localStorage.setItem('user', JSON.stringify(this.userData));
-      //     JSON.parse(localStorage.getItem('user'));
-      //   } else {
-      //     localStorage.setItem('user', null);
-      //     JSON.parse(localStorage.getItem('user'));
-      //   }
-      // });
     }
     getUsers(): Observable<User[]> {
       const userRef = collection(this.afs, 'users');
