@@ -49,6 +49,10 @@ loadChildren: ()=> import ('./pages/workout/workout.module').then(m=>m.WorkoutMo
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
+  },
+  {
+    path: 'modal',
+    loadChildren: () => import('./pages/modal/modal.module').then( m => m.ModalPageModule)
   }
 ];
 @NgModule({

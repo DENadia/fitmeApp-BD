@@ -3,16 +3,16 @@
     <ion-buttons slot="start">
       <ion-back-button color="dark"></ion-back-button>
     </ion-buttons>
+    <ion-button slot="end" fill="clear"  (click)="addCategory()">
+      <ion-icon name="add" color="fave"></ion-icon>
+    </ion-button>
     <ion-title>Workout</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content class="card-background-page">
-  <ion-reorder-group disabled="false" (ionItemReorder)="moveChecklist($event)">
-      <ion-item  *ngFor="let category of categories">
-        <ion-label> {{category.name}} </ion-label>
-        <ion-reorder slot="start">
-          <ion-icon name="repeat"></ion-icon>
-        </ion-reorder>
-      </ion-item>
-    </ion-reorder-group>
+  <ion-list>
+    <ion-item  *ngFor="let category of categories" (click)="openCategory(category)">
+      <ion-label> {{category.categoryName}} </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
