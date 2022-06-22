@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Add new exercise</ion-title>
+    <ion-title>Edit exercise</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()" color="fave">Close</ion-button>
     </ion-buttons>
@@ -10,13 +10,14 @@
 <ion-content>
   <ion-item>
     <ion-label position="stacked">Exercise name</ion-label>
-    <ion-input [(ngModel)]="exerciseName"></ion-input>
+    <ion-input [(ngModel)]="exercise.exerciseName"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Category</ion-label>
-    <ion-select [(ngModel)]="category">
+    <ion-select [(ngModel)]="exercise.category">
       <ion-select-option *ngFor="let  category of categories" [value]="category.categoryName">{{category.categoryName}}</ion-select-option>
     </ion-select>
   </ion-item>
-<ion-button expand="block" color="fave" (click)="addExercise()">Add</ion-button>
+<ion-button expand="block" color="fave" (click)="updateExercise()">Update</ion-button>
+<ion-button expand="block" color="fave" (click)="deleteExercise()">Delete</ion-button>
 </ion-content>

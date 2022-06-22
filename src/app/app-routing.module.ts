@@ -35,6 +35,10 @@ const routes: Routes = [
   loadChildren: () => import('./auth/profile/profile.module').then(m => m.ProfileModule)
 },
 {
+  path: 'profile-edit',
+  loadChildren: () => import('./auth/profile-edit/profile-edit.module').then(m => m.ProfileEditModule)
+},
+{
   path: 'timer',
   loadChildren: () => import('./pages/timer/timer.module').then(m => m.TimerModule)
 },
@@ -47,8 +51,8 @@ path: 'workout',
 loadChildren: ()=> import ('./pages/workout/workout.module').then(m=>m.WorkoutModule)
 },
 {
-  path: 'workout-list',
-  loadChildren: ()=> import ('./pages/workout-list/workout-list.module').then(m=>m.WorkoutListModule)
+  path: 'editor-list',
+  loadChildren: ()=> import ('./pages/editor-list/editor-list.module').then(m=>m.EditorListModule)
   },
   {
     path: 'workout-exercises',
@@ -65,6 +69,23 @@ loadChildren: ()=> import ('./pages/workout/workout.module').then(m=>m.WorkoutMo
   {
     path: 'edit-exercise',
     loadChildren: () => import('./pages/edit-exercise/edit-exercise.module').then( m => m.EditExercisePageModule)
+  },
+  {
+    path: 'edit-exercises-category',
+    // eslint-disable-next-line max-len
+    loadChildren: () => import('./pages/edit-exercises-category/edit-exercises-category.module').then( m => m.EditExercisesCategoryPageModule)
+  },
+  {
+    path: 'workout-routine',
+    loadChildren: () => import('./pages/workout-routine/workout-routine.module').then( m => m.WorkoutRoutinePageModule)
+  },
+  {
+    path: 'routine-visualizer',
+    loadChildren: () => import('./pages/routine-visualizer/routine-visualizer.module').then( m => m.RoutineVisualizerPageModule)
+  },
+  {
+    path: 'update-delete-exercise',
+    loadChildren: () => import('./pages/update-delete-exercise/update-delete-exercise.module').then( m => m.UpdateDeleteExercisePageModule)
   }
 ];
 @NgModule({

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { AlertController, ModalController, ToastController } from '@ionic/angular';
+import { Exercise } from 'src/app/models/exercise';
 import { MusclesCategory } from 'src/app/models/muscles-category';
 import { DatafirebaseService } from 'src/app/services/datafirebase.service';
 
@@ -11,17 +12,20 @@ import { DatafirebaseService } from 'src/app/services/datafirebase.service';
 })
 export class ModalPage implements OnInit {
 
-  @Input() id: string;
-  category: MusclesCategory=null;
-  constructor(private dataService: DatafirebaseService,  private modalCtrl: ModalController,
+  @Input()  category: MusclesCategory;
+ 
+  exercises: Exercise[]=[]
+;  constructor(private dataService: DatafirebaseService,  private modalCtrl: ModalController,
     private toastCtrl: ToastController, private alertCtrl: AlertController, private auth: Auth) { }
 
   ngOnInit() {
     if(this.auth.currentUser)
     {
-      this.dataService.getUserMusclesGroupById(this.auth.currentUser.uid, this.id).subscribe(res =>{
+      this.dataService.getUserMusclesGroupById(this.auth.currentUser.uid, this.category.categoryId).subscribe(res =>{
         this.category=res;
-        console.log(this.category);
+      });
+      this.dataService.getUserExerciseByCategory(this.auth.currentUser.uid, this.category.categoryName).then(res=>{
+        this.exercises=res;
       });
     }
   }
@@ -29,6 +33,10 @@ export class ModalPage implements OnInit {
   {
     if(this.auth.currentUser)
     {
+      this.exercises.forEach(exercise=>{
+        exercise.category=this.category.categoryName;
+        this.dataService.updateUserExercise(this.auth.currentUser.uid, exercise);
+      });
     this.dataService.updateUserMuscle( this.auth.currentUser.uid,this.category);
     const toast=await this.toastCtrl.create({
       message:'Category updated!',
@@ -36,34 +44,8 @@ export class ModalPage implements OnInit {
     });
     toast.present();
   }
+  this.modalCtrl.dismiss();
   }
-//   async update()
-//     {
-//   const alert=await this.alertCtrl.create({
-//     header: 'Edit Category',
-//     inputs:[
-//       {
-//         name:'name',
-//         value: this.category.categoryName,
-//         type:'text'
-//       }
-//     ],
-//     buttons:[
-//       {
-//         text:'Cancel',
-//         role:'cancel'
-//       },
-//       {
-//         text:'Update',
-//         handler:(res)=>{
-//           // console.log("Trying to add new category");
-//           this.dataService.updateUserMuscle(this.category);
-//         }
-//       }
-//     ]
-//   });
-//   await alert.present();
-// }
   async deleteCategory()
   {
     if(this.auth.currentUser)

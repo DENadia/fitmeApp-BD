@@ -3,3 +3,4 @@ export interface Exercise {
  exerciseName?: string;
  category?: string;
 }
+

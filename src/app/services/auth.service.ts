@@ -3,7 +3,7 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from
 import { signOut } from '@firebase/auth';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
-import { Firestore, collection, collectionData, doc, docData, addDoc, deleteDoc, updateDoc } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, doc, docData, addDoc, deleteDoc, updateDoc, setDoc } from '@angular/fire/firestore';
 import { LoadingController, ToastController } from '@ionic/angular';
 @Injectable({
   providedIn: 'root'
@@ -22,15 +22,15 @@ userData: any;
       return collectionData(userRef, { idField: 'userId'}) as Observable<User[]>;
     }
    
-    getUserById(id): Observable<User> {
+    getUserById(id) {
       const user=this.auth.currentUser;
       const userDocRef = doc(this.afs, `users/${id}`);
-      return docData(userDocRef, { idField: 'userId' }) as Observable<User>;
+      return docData(userDocRef, { idField: 'userId' });
     }
    
-    addUser(user: User) {
-      const userRef = collection(this.afs, 'users');
-      return addDoc(userRef, user);
+    addUser(user: User, id: string) {
+      const userRef = doc(this.afs, `users/${id}`);
+      return setDoc(userRef, user);
     }
     deleteUser(user: User) {
       const userDocRef = doc(this.afs, `users/${user.userId}`);

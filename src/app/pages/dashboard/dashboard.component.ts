@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
 import { timer } from 'rxjs';
 import {Router} from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
+import { DatafirebaseService } from 'src/app/services/datafirebase.service';
+import { Auth } from '@angular/fire/auth';
+import { Firestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,81 +14,36 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  public toBeDisplayed=[];
-  routines=[{
-    routine_type:'workout',
-    routineStructure:[
-      {
-        name:"Full body",
-        exercises:[
-          {
-            exercise_name:"Squats",
-            sets:[
-              {
-                no_set:'1',
-                reps:15,
-                weight:'30kg',
-                note:'some note here'
-              },
-              {
-                no_set:'2',
-                reps:15,
-                weight:'30kg',
-                note:'some other note here'
-              }
-            ]
-          },
-          {
-            exercise_name:"Lateral raises",
-            sets:[
-              {
-                no_set:'1',
-                reps:15,
-                weight:'30kg',
-                note:'some note here'
-              },
-              {
-                no_set:'2',
-                reps:15,
-                weight:'30kg',
-                note:'some note here'
-              },
-              {
-                no_set:'3',
-                reps:15,
-                weight:'30kg',
-                note:'some note here'
-              }
-
-            ]
-          }
-        ]
-      }
-    ]
-  
-  }];
-
- 
  public today;
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private loadingController: LoadingController,
-    private alertController: AlertController
-
-  ) {
-  }
-
+ constructor(private dataFirebase: DatafirebaseService,
+  private router: Router,
+  private alertCtrl: AlertController,
+  private modalCtrl: ModalController,
+  private auth: Auth,
+ private afs: Firestore) {
+ }
+ 
   ngOnInit() {
       this.today = Date.now();
-      this.routines.forEach((elem)=>
-      {
-        this.toBeDisplayed.push(
+  }
+  addRoutine(){
+    this.dataFirebase.getYogaStyles().subscribe(res=>{
+      console.log(res);
+      res.forEach(r=>{
+        this.dataFirebase.getYogaExercises(r.categoryId).subscribe(ress=>
           {
-           name:`${elem.routineStructure[0].name}`,
-           exercise:`${elem.routineStructure[0].exercises[0].sets.length}`
-        });
+            console.log(ress);
+            ress.forEach(re=>{
+              this.dataFirebase.addYogaExercise(r.categoryId, {
+                name:re.name,
+                style: r.categoryId,
+                description: re.description
+              });
+            });
+          });
       });
+    });
+    
   }
  
 }

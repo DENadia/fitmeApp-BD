@@ -16,6 +16,8 @@ export class SignupComponent implements OnInit {
   credential: FormGroup;
   categories=null;
   exercises: any[] =[];
+  yoga=null;
+  yogaExercises: any[]=[];
   constructor(private formBuilder: FormBuilder,
     private loadingControler: LoadingController,
     private authService: AuthService,
@@ -27,6 +29,9 @@ export class SignupComponent implements OnInit {
       this.dataService.getMusclesGroups().subscribe((res)=>{
         console.log(res);
         this.categories=res;
+        });
+        this.dataService.getYogaStyles().subscribe(r=>{
+          this.yoga=r;
         });
     }
   get name() {
@@ -60,12 +65,25 @@ export class SignupComponent implements OnInit {
         userName: this.credential.get('name').value,
         userEmail: this.credential.get('email').value,
         userPhoto: '',
-      }).then(() => {
+      }, userr.uid).then(() => {
         this.categories.forEach(category => {
           this.dataService.addUserMuscles(this.auth.currentUser.uid, {categoryName: category.name});
           this.dataService.getExercises('workout',category.name).subscribe(reusult=>{
             reusult.forEach(r=>{
              this.dataService.addUserExercise(this.auth.currentUser.uid,{exerciseName:r.exercise_name, category:r.category});
+            });
+          });
+         });
+         this.yoga.forEach(yogaItem=>{
+          this.dataService.addUserYogaStyle(this.auth.currentUser.uid, {name: yogaItem.name});
+          this.dataService.getYogaExercises(yogaItem.categoryId).subscribe(yogaResult=>{
+            yogaResult.forEach(yogaExercise=>{  
+              this.dataService.addUserYogaExercise(this.auth.currentUser.uid, 
+                {
+                  name: yogaExercise.name, 
+                  style: yogaExercise.style,
+                  description: yogaItem.categoryId
+                });
             });
           });
          });

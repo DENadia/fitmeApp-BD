@@ -35,19 +35,6 @@ export class LoginComponent implements OnInit {
          password: ['', [Validators.required, Validators.minLength(6)]]
         });
     }
-
-    // async register(){  
-    //     const loading=await this.loadingControler.create();
-    //     await loading.present();
-    //  const user=await this.authService.register(this.credential.value);
-    //  await loading.dismiss();
-    //  if(user)
-    //  {
-    //      this.router.navigateByUrl('/tabs', {replaceUrl:true});
-    //  }else{
-    //      this.showAlert('Registration failed', 'Please try again');
-    //  }
-    // }
     async login(){
         const loading=await this.loadingControler.create();
         await loading.present();

@@ -1,18 +1,19 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button color="dark"></ion-back-button>
+      <ion-back-button color="fave"></ion-back-button>
     </ion-buttons>
     <ion-button slot="end" fill="clear"  (click)="addExercise()">
       <ion-icon name="add" color="fave"></ion-icon>
     </ion-button>
-    <ion-title>Workout</ion-title>
+    <ion-title>Workout exercises</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content class="card-background-page">
   <ion-list>
-    <ion-item  *ngFor="let exercise of exercises" (click)="openExercise(exercise)">
+    <ion-item  *ngFor="let exercise of exercises">
       <ion-label> {{exercise.exerciseName}} </ion-label>
+      <ion-icon name="ellipsis-vertical" slot="end"color="fave"  (click)="openExercise(exercise)"></ion-icon>
     </ion-item>
   </ion-list>
 </ion-content>

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-workout-list',
-  templateUrl: './workout-list.component.html',
-  styleUrls: ['./workout-list.component.scss'],
+  selector: 'app-editor-list',
+  templateUrl: './editor-list.component.html',
+  styleUrls: ['./editor-list.component.scss'],
 })
-export class WorkoutListComponent implements OnInit {
+export class EditorListComponent implements OnInit {
   editors=[
     {
       title: 'Workout',

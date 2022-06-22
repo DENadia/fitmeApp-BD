@@ -1,76 +1,62 @@
-
-// .card-background-page {
-
-//   .card-title {
-//     padding-top:20px;
-//     font-size: 1.5em;
-//     width: 80%;
-//     font-weight: bold;
-//     color: #1c1c1c;
-//   }
-
-//   .card-subtitle  {
-//     font-size: 1.0em;
-//     width: 80%;
-//     color: #4A4A4A;
-//    padding-bottom: 30px;
-//   }
-  
-// }
-// ion-toolbar{
-//   text-align: center;
-//   .start-btn{
-//     width: 80%;
-//     height: 40px;
-//     text-transform: none;
-//     font-size: 1.2rem;
-//   }
-//   ion-title{ 
-//     font-size: 1.5em;
-//     text-align: center;
-//     font-weight: bold;
-//     color: black;
-//   }
-// }
-
-
-// ion-header{ 
   :root {
     --ion-safe-area-top: 20px;
-    --ion-safe-area-bottom: 22px;}
+    --ion-safe-area-bottom: 22px;
+  }
+
   ion-slides {
-        height: 100%;
-      }
+    background-size: cover;
+    background-position: center center;
+    height: 90%;
+    width: 80%;
+  }
+  .swiper-slide {
+    display: block;
+  }
 
-      .swiper-slide {
-        display: block;
-      }
+  .swiper-slide h1 {
+    margin-top: 2rem;
+    font-weight: 600;
+    font-size: 26px;
+  }
 
-      .swiper-slide h1 {
-        margin-top: 2.8rem;
-        font-weight: 600;
-        font-size: 26px;
-      }
+  .swiper-slide img {
+    max-height: 50%;
+    max-width: 80%;
+    margin: 40px 0 20px;
+    pointer-events: none;
+  }
 
-      .swiper-slide img {
-        max-height: 50%;
-        max-width: 80%;
-        margin: 60px 0 40px;
-        pointer-events: none;
-      }
+  b {
+    font-weight: 500;
+  }
 
-      b {
-        font-weight: 500;
-      }
+  p {
+    padding: 0 40px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgb(98, 95, 95);
+  }
 
-      p {
-        padding: 0 40px;
-        font-size: 14px;
-        line-height: 1.5;
-        color: rgb(98, 95, 95);
-      }
+  p b {
+    color: var(--ion-text-color, #000000);
+  }
 
-      p b {
-        color: var(--ion-text-color, #000000);
-      }
+  ion-button {
+    font-size: 1rem;
+  }
 
+  ion-item {
+    width: 100%;
+    position: absolute;
+    bottom: 18px;
+  }
+  // ::ng-deep.swiper-pagination {
+  //   bottom:px !important;
+  // }
+
+  ::ng-deep.swiper-pagination-bullet {
+    background: #646161 !important;
+    width: 10px !important;
+    height: 10px !important;
+  }
+ 

@@ -6,6 +6,7 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { DatafirebaseService } from 'src/app/services/datafirebase.service';
 import { EditExercisePage } from '../edit-exercise/edit-exercise.page';
 import { ModalPage } from '../modal/modal.page';
+import { UpdateDeleteExercisePage } from '../update-delete-exercise/update-delete-exercise.page';
 
 @Component({
   selector: 'app-workout-exercises',
@@ -15,7 +16,6 @@ import { ModalPage } from '../modal/modal.page';
 export class WorkoutExercisesComponent implements OnInit {
   exercises=null;
   user: any;
-  selectedVal:string="";
   constructor(private dataFirebase: DatafirebaseService,
     private router: Router,
     private alertCtrl: AlertController,
@@ -41,22 +41,18 @@ export class WorkoutExercisesComponent implements OnInit {
     if(this.user){
       const modal=await this.modalCtrl.create({
         component: EditExercisePage,
-        componentProps: {id: this.user.uid},
-        breakpoints:[0,0.5,0.8],
-        initialBreakpoint:0.5,
+        componentProps: {id: this.user.uid}
       });
       modal.present();
     }
   }
-  async openExercise(category)
+  async openExercise(exercise)
   {
-    console.log(category.categoryId);
+    console.log(exercise.exerciseId);
     const modal=await this.modalCtrl.create({
-      component: ModalPage,
-      componentProps: {id: category.categoryId},
-      breakpoints:[0,0.5,0.8],
-      initialBreakpoint:0.5,
+      component: UpdateDeleteExercisePage,
+      componentProps: {idUser: this.user.uid, idExercise: exercise.exerciseId},
     });
-    modal.present();
+    return await modal.present();
   }
 }

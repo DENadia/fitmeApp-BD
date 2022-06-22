@@ -34,64 +34,8 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
-
-  <ion-card>
-    <ion-card-title>Morning strech</ion-card-title>
-    <ion-card-content>
-      <ion-list lines="none">
-        <ion-item>
-          <ion-label>
-            30sec Sun Salutations
-          </ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>
-            45sec Chair Pose
-          </ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>
-            45sec Revolved Chair Pose
-          </ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>
-            2x30sec Downward Facing Dog
-          </ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-title>Knee pain relief</ion-card-title>
-    <ion-card-content>
-      <ion-list lines="none">
-        <ion-item>
-          <ion-label>
-            3x Clamshells
-          </ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>
-            3x Bridging
-          </ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>
-            3x Hip Abduction
-          </ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>
-            4x Straight Leg Raise
-          </ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
   <ion-fab horizontal="end" slot="fixed" vertical="bottom" class="fab-right">
-    <ion-fab-button color="fave" >
+    <ion-fab-button color="fave" (click)="addRoutine()">
         <ion-icon name="add" size="large"></ion-icon>
     </ion-fab-button>
   </ion-fab>

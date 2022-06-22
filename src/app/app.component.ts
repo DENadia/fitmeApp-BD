@@ -16,8 +16,8 @@ export class AppComponent {
   @ViewChildren(IonRouterOutlet) routerOutlets: QueryList<IonRouterOutlet>;
   public pageList = [
      {iconName: 'person', displayText: 'Account', url: '/profile'},
-      {iconName: 'pencil', displayText: 'Editor', url: '/workout-list'},
-      {iconName: 'newspaper', displayText: 'Survey', url: '/survey'},
+      {iconName: 'pencil', displayText: 'Editor', url: '/editor-list'},
+      {iconName: 'star', displayText: 'Ratings', url: '/ratings'},
       {iconName: 'search', displayText: 'Search', url: '/search'},
       {iconName: 'time', displayText: 'Timer', url: '/timer'}
   ];

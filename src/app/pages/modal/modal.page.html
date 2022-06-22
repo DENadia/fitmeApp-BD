@@ -7,10 +7,10 @@
 <ion-content>
 <div *ngIf="category">
   <ion-item>
-    <ion-label position="stacked">Category name</ion-label>
+    <ion-label position="stacked" color="fave">Category name</ion-label>
     <ion-input [(ngModel)]="category.categoryName"></ion-input>
   </ion-item>
 </div>
-<ion-button expand="block" color="success" (click)="updateCategory()">Update</ion-button>
-<ion-button expand="danger" color="success" (click)="deleteCategory()">Delete</ion-button>
+<ion-button  color="fave" (click)="updateCategory()">Update</ion-button>
+<ion-button  color="fave" (click)="deleteCategory()">Delete</ion-button>
 </ion-content>

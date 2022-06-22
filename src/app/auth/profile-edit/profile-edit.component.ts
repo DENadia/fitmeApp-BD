@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
+import { ModalController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-profile-edit',
@@ -6,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-edit.component.scss'],
 })
 export class ProfileEditComponent implements OnInit {
+  @Input() user: any;
+  email='';
+  name='';
+  constructor(private auth: AuthService,
+    private modalCtrl: ModalController) { }
 
-  constructor() { }
-
-  ngOnInit() {}
+  ngOnInit() {
+    this.email=this.user.userEmail;
+    this.name=this.user.userName;
+    console.log(this.email, this.name);
+  }
 
 }

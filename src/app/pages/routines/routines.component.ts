@@ -19,7 +19,7 @@ export class RoutinesComponent implements OnInit {
 
   ngOnInit() {}
   public goToDetails(name): void{
-    this.router.navigateByUrl(`/${name}`);
+    this.router.navigateByUrl(`/${name}-routine`);
   }
 
 }

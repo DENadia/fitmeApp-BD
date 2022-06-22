@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { IonSlides } from '@ionic/angular';
 
 @Component({
   selector: 'app-welcome',
@@ -6,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./welcome.component.scss'],
 })
 export class WelcomeComponent implements OnInit {
-
+  @ViewChild(IonSlides, {static: true}) slides: IonSlides;
   list = [
     {
         title: 'healthy Living',
@@ -34,8 +36,23 @@ export class WelcomeComponent implements OnInit {
     }
 ];
 
-  constructor() { }
+ constructor(private router: Router) { }
 
-  ngOnInit() {}
+ ngOnInit() {}
+onNext() {
+  this.slides.isEnd().then(r => {
+      if (!r) {
+          this.slides.slideNext(1000);
+      } else {
+          this.router.navigateByUrl('/home');
+      }
+  });
+}
 
+onSkip() {
+  this.router.navigateByUrl('/home');
+}
+
+
+ 
 }
