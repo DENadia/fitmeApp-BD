@@ -81,8 +81,8 @@ export class SignupComponent implements OnInit {
               this.dataService.addUserYogaExercise(this.auth.currentUser.uid, 
                 {
                   name: yogaExercise.name, 
-                  style: yogaExercise.style,
-                  description: yogaItem.categoryId
+                  style: yogaItem.categoryId,
+                  description: yogaExercise.description
                 });
             });
           });
