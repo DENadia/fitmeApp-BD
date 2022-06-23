@@ -17,18 +17,24 @@ export class EditorListComponent implements OnInit {
     },
     {
       title: 'Yoga',
-      category: 'categories',
-      icon: 'accessibility'
+      category: 'yoga',
+      icon: 'accessibility',
+      pageCategory: 'yoga-styles',
+      pageExercises: 'yoga-exercises'
     },
     {
       title: 'Pain relief',
       category:  'group',
-      icon: 'bandage'
+      icon: 'bandage',
+      pageCategory: 'streching-targets',
+      pageExercises: 'streching-exercises'
     },
     {
       title: 'Outdoors',
       category: 'categories',
-      icon: 'bicycle'
+      icon: 'bicycle',
+      pageCategory: 'outdoors-types',
+      pageExercises: 'outdoors-activities'
     }
   ];
   constructor(public router: Router) { }

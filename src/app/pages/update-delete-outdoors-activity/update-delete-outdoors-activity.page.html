@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit activity</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" color="fave">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="stacked">Activity name</ion-label>
+    <ion-input [(ngModel)]="activity.name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Type</ion-label>
+    <ion-select [(ngModel)]="activity.type">
+      <ion-select-option *ngFor="let  type of types" [value]="type.name">{{type.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+<ion-button expand="block" color="fave" (click)="updateActivity()">Update</ion-button>
+<ion-button expand="block" color="fave" (click)="deleteActivity()">Delete</ion-button>
+</ion-content>

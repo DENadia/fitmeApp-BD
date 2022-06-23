@@ -86,6 +86,78 @@ loadChildren: ()=> import ('./pages/workout/workout.module').then(m=>m.WorkoutMo
   {
     path: 'update-delete-exercise',
     loadChildren: () => import('./pages/update-delete-exercise/update-delete-exercise.module').then( m => m.UpdateDeleteExercisePageModule)
+  },
+  {
+    path: 'yoga-styles',
+    loadChildren: () => import('./pages/yoga-styles/yoga-styles.module').then( m => m.YogaStylesPageModule)
+  },
+  {
+    path: 'yoga-exercises',
+    loadChildren: () => import('./pages/yoga-exercises/yoga-exercises.module').then( m => m.YogaExercisesPageModule)
+  },
+  {
+    path: 'modal-style',
+    loadChildren: () => import('./pages/modal-style/modal-style.module').then( m => m.ModalStylePageModule)
+  },
+  {
+    path: 'view-exercises-yoga-styles',
+    loadChildren: () => import('./pages/view-exercises-yoga-styles/view-exercises-yoga-styles.module').then( m => m.ViewExercisesYogaStylesPageModule)
+  },
+  {
+    path: 'add-yoga-exercises',
+    loadChildren: () => import('./pages/add-yoga-exercises/add-yoga-exercises.module').then( m => m.AddYogaExercisesPageModule)
+  },
+  {
+    path: 'update-delete-yoga-exercises',
+    loadChildren: () => import('./pages/update-delete-yoga-exercises/update-delete-yoga-exercises.module').then( m => m.UpdateDeleteYogaExercisesPageModule)
+  },
+  {
+    path: 'streching-targets',
+    loadChildren: () => import('./pages/streching-targets/streching-targets.module').then( m => m.StrechingTargetsPageModule)
+  },
+  {
+    path: 'streching-exercises',
+    loadChildren: () => import('./pages/streching-exercises/streching-exercises.module').then( m => m.StrechingExercisesPageModule)
+  },
+  {
+    path: 'modal-streching-target',
+    loadChildren: () => import('./pages/modal-streching-target/modal-streching-target.module').then( m => m.ModalStrechingTargetPageModule)
+  },
+  {
+    path: 'view-exercises-streching-target',
+    loadChildren: () => import('./pages/view-exercises-streching-target/view-exercises-streching-target.module').then( m => m.ViewExercisesStrechingTargetPageModule)
+  },
+  {
+    path: 'update-delete-streching-exercises',
+    loadChildren: () => import('./pages/update-delete-streching-exercises/update-delete-streching-exercises.module').then( m => m.UpdateDeleteStrechingExercisesPageModule)
+  },
+  {
+    path: 'add-streching-exercises',
+    loadChildren: () => import('./pages/add-streching-exercises/add-streching-exercises.module').then( m => m.AddStrechingExercisesPageModule)
+  },
+  {
+    path: 'outdoors-types',
+    loadChildren: () => import('./pages/outdoors-types/outdoors-types.module').then( m => m.OutdoorsTypesPageModule)
+  },
+  {
+    path: 'outdoors-activities',
+    loadChildren: () => import('./pages/outdoors-activities/outdoors-activities.module').then( m => m.OutdoorsActivitiesPageModule)
+  },
+  {
+    path: 'modal-outdoors-type',
+    loadChildren: () => import('./pages/modal-outdoors-type/modal-outdoors-type.module').then( m => m.ModalOutdoorsTypePageModule)
+  },
+  {
+    path: 'view-activities-outdoors-types',
+    loadChildren: () => import('./pages/view-activities-outdoors-types/view-activities-outdoors-types.module').then( m => m.ViewActivitiesOutdoorsTypesPageModule)
+  },
+  {
+    path: 'add-outdoors-activity',
+    loadChildren: () => import('./pages/add-outdoors-activity/add-outdoors-activity.module').then( m => m.AddOutdoorsActivityPageModule)
+  },
+  {
+    path: 'update-delete-outdoors-activity',
+    loadChildren: () => import('./pages/update-delete-outdoors-activity/update-delete-outdoors-activity.module').then( m => m.UpdateDeleteOutdoorsActivityPageModule)
   }
 ];
 @NgModule({

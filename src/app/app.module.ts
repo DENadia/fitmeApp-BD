@@ -13,7 +13,6 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],

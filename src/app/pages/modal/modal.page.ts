@@ -13,8 +13,8 @@ import { DatafirebaseService } from 'src/app/services/datafirebase.service';
 export class ModalPage implements OnInit {
 
   @Input()  category: MusclesCategory;
- 
-  exercises: Exercise[]=[]
+
+  exercises: Exercise[]=null;
 ;  constructor(private dataService: DatafirebaseService,  private modalCtrl: ModalController,
     private toastCtrl: ToastController, private alertCtrl: AlertController, private auth: Auth) { }
 
@@ -25,7 +25,9 @@ export class ModalPage implements OnInit {
         this.category=res;
       });
       this.dataService.getUserExerciseByCategory(this.auth.currentUser.uid, this.category.categoryName).then(res=>{
+        
         this.exercises=res;
+        console.log(this.exercises);
       });
     }
   }
@@ -50,8 +52,23 @@ export class ModalPage implements OnInit {
   {
     if(this.auth.currentUser)
     {
-      await this.dataService.deleteUserMuscle( this.auth.currentUser.uid,this.category);
-      this.modalCtrl.dismiss();
+      if(this.exercises.length!==0){
+        // eslint-disable-next-line max-len
+        this.showAlert('Error', 'There are exercises connected to this category. Change category for these exercises before deleting this category. Thank you!');
+      }
+      else{
+        await this.dataService.deleteUserMuscle( this.auth.currentUser.uid,this.category);
+        this.modalCtrl.dismiss();
+      }
+
     }
+    }
+    async showAlert(header, message) {
+      const alert = await this.alertCtrl.create({
+        header,
+        message,
+        buttons: ['OK'],
+      });
+      await alert.present();
     }
 }

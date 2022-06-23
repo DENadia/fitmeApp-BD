@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { YogaComponent } from './yoga.component';
+import { UpdateDeleteYogaExercisesPage } from './update-delete-yoga-exercises.page';
 
-describe('YogaComponent', () => {
-  let component: YogaComponent;
-  let fixture: ComponentFixture<YogaComponent>;
+describe('UpdateDeleteYogaExercisesPage', () => {
+  let component: UpdateDeleteYogaExercisesPage;
+  let fixture: ComponentFixture<UpdateDeleteYogaExercisesPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ YogaComponent ],
+      declarations: [ UpdateDeleteYogaExercisesPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(YogaComponent);
+    fixture = TestBed.createComponent(UpdateDeleteYogaExercisesPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

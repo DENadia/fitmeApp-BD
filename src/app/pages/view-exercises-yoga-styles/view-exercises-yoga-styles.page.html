@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{cName}}</ion-title>
+    <ion-title>{{sName}}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()" color="fave">Close</ion-button>
     </ion-buttons>
@@ -9,7 +9,7 @@
 <ion-content class="card-background-page">
   <ion-list>
     <ion-item  *ngFor="let exercise of exercises">
-      <ion-label> {{exercise.exerciseName}} </ion-label>
+      <ion-label> {{exercise.name}} </ion-label>
       <ion-icon name="information-circle-outline" color="fave"></ion-icon> 
     </ion-item>
   </ion-list>

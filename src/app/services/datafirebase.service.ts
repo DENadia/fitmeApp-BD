@@ -105,30 +105,224 @@ export class DatafirebaseService {
      return exercises;
   }
 
-  //CRUD on styles for yoga edition 
+  //CRUD on styles and exercises for yoga edition 
   getYogaStyles(){
     const groupsRef=collection(this.firestore,`categories/yoga/styles`);
     return collectionData(groupsRef, {idField:'categoryId'}) as Observable<any[]>;
   }
 
-  addYogaStyle(style: any, id: string) {
-    const userRef = doc(this.firestore, `categories/yoga/styles/${id}`);
-    return setDoc(userRef, style);
-  }
   addUserYogaStyle(idUser: string, style: any){
     const categoryRef=collection(this.firestore, `users/${idUser}/categories/yoga/styles`);
     return addDoc(categoryRef, style);
   }
   getYogaExercises( categoryId: string){
-    const groupsRef=collection(this.firestore,`categories/streching/styles/${categoryId}/exercises`);
+    const groupsRef=collection(this.firestore,`categories/yoga/styles/${categoryId}/exercises`);
     return collectionData(groupsRef) as Observable<any[]>;
   }
-  addYogaExercise(idStyle: string, exercise: any){
-    const categoryRef=collection(this.firestore, `categories/yoga/styles/${idStyle}/exercises`);
-    return addDoc(categoryRef, exercise);
-  }
+
   addUserYogaExercise(idUser: string, exercise: any){
     const categoryRef=collection(this.firestore, `users/${idUser}/yoga-exercises`);
     return addDoc(categoryRef, exercise);
+  }
+  getUserYogaStyles(idUser: string): Observable<any[]>{
+    const grouptRef=collection(this.firestore, `users/${idUser}/categories/yoga/styles`);
+    return collectionData(grouptRef,  {idField:'categoryId'}) as Observable<any[]>;
+  }
+
+  getUserYogaStyleById(idUser: string, id: string){
+    const grouptRef=doc(this.firestore, `users/${idUser}/categories/yoga/styles/${id}`);
+    return docData(grouptRef,{idField:'categoryId'}) as Observable<any>;
+  }
+
+  deleteUserYogaStyle(idUser: string,style: any)
+  {
+    const categoryRef=doc(this.firestore, `users/${idUser}/categories/yoga/styles/${style.categoryId}`);
+    return deleteDoc(categoryRef);
+  }
+
+  updateUserYogaStyle(idUser: string,style: any)
+  {
+    const categoryRef=doc(this.firestore, `users/${idUser}/categories/yoga/styles/${style.categoryId}`);
+    return updateDoc(categoryRef, {name: style.name});
+  }
+
+  getUserYogaExercises(idUser: string): Observable<any[]>{
+    const grouptRef=collection(this.firestore, `users/${idUser}/yoga-exercises`);
+    return collectionData(grouptRef, {idField:'exerciseId'}) as Observable<any[]>;
+  }
+
+  getUserYogaExerciseById(idUser: string, id: string){
+    const grouptRef=doc(this.firestore, `users/${idUser}/yoga-exercises/${id}`);
+    return docData(grouptRef,{idField:'exerciseId'}) as Observable<any>;
+  }
+  deleteUserYogaExercise(idUser: string, idExercise){
+    const exerciseRef=doc(this.firestore, `users/${idUser}/yoga-exercises/${idExercise}`);
+    return deleteDoc(exerciseRef);
+  }
+
+  updateUserYogaExercise(idUser: string, exercise: any)
+  {
+    const exerciseRed=doc(this.firestore, `users/${idUser}/yoga-exercises/${exercise.exerciseId}`);
+    return updateDoc(exerciseRed, {name: exercise.name, style: exercise.style, description: exercise.description});
+  }
+  async getUserYogaExerciseByStyle(idUser: string, style: string){
+   const exercises: any[]=[];
+    const q=query(collection(this.firestore,`users/${idUser}/yoga-exercises`), where('style','==', `${style}`));
+    const querySnapshot = await getDocs(q);
+     querySnapshot.docs.forEach((docc) => {
+       exercises.push({exerciseId: docc.id,
+         name:docc.data().name,
+         style:docc.data().style,
+         description: docc.data().description
+       });
+     });
+     return exercises;
+  }
+
+  //CRUD operations on target and exercises for streching edition 
+  getStrechingTargets(){
+    const groupsRef=collection(this.firestore,`categories/streching/target`);
+    return collectionData(groupsRef, {idField:'categoryId'}) as Observable<any[]>;
+  }
+
+  addUserStrechingTargets(idUser: string, target: any){
+    const categoryRef=collection(this.firestore, `users/${idUser}/categories/streching/target`);
+    return addDoc(categoryRef, target);
+  }
+
+  getUserStrechingTargets(idUser: string): Observable<any[]>{
+    const grouptRef=collection(this.firestore, `users/${idUser}/categories/streching/target`);
+    return collectionData(grouptRef,  {idField:'categoryId'}) as Observable<any[]>;
+  }
+
+  getUserStrechingTargetById(idUser: string, id: string){
+    const grouptRef=doc(this.firestore, `users/${idUser}/categories/streching/target/${id}`);
+    return docData(grouptRef,{idField:'categoryId'}) as Observable<any>;
+  }
+
+  deleteUserStrechingTarget(idUser: string,target: any)
+  {
+    const categoryRef=doc(this.firestore, `users/${idUser}/categories/streching/target/${target.categoryId}`);
+    return deleteDoc(categoryRef);
+  }
+
+  updateUserStrechingTarget(idUser: string,target: any)
+  {
+    const categoryRef=doc(this.firestore, `users/${idUser}/categories/streching/target/${target.categoryId}`);
+    return updateDoc(categoryRef, {name: target.name});
+  }
+  getStrechingExercises( categoryId: string){
+    const groupsRef=collection(this.firestore,`categories/streching/target/${categoryId}/exercises`);
+    return collectionData(groupsRef) as Observable<any[]>;
+  }
+  addUserStrechingExercise(idUser: string, exercise: any){
+    const categoryRef=collection(this.firestore, `users/${idUser}/streching-exercises`);
+    return addDoc(categoryRef, exercise);
+  }
+  getUserStrechingExercises(idUser: string): Observable<any[]>{
+    const grouptRef=collection(this.firestore, `users/${idUser}/streching-exercises`);
+    return collectionData(grouptRef, {idField:'exerciseId'}) as Observable<any[]>;
+  }
+
+  getUserStrechingExerciseById(idUser: string, id: string){
+    const grouptRef=doc(this.firestore, `users/${idUser}/streching-exercises/${id}`);
+    return docData(grouptRef,{idField:'exerciseId'}) as Observable<any>;
+  }
+  deleteUserStrechingExercise(idUser: string, idExercise){
+    const exerciseRef=doc(this.firestore, `users/${idUser}/streching-exercises/${idExercise}`);
+    return deleteDoc(exerciseRef);
+  }
+
+  updateUserStrechingExercise(idUser: string, exercise: any)
+  {
+    const exerciseRed=doc(this.firestore, `users/${idUser}/streching-exercises/${exercise.exerciseId}`);
+    return updateDoc(exerciseRed, {name: exercise.name, target: exercise.target, description: exercise.description});
+  }
+  async getUserStrechingExerciseByTarget(idUser: string, target: string){
+   const exercises: any[]=[];
+    const q=query(collection(this.firestore,`users/${idUser}/streching-exercises`), where('target','==', `${target}`));
+    const querySnapshot = await getDocs(q);
+     querySnapshot.docs.forEach((docc) => {
+       exercises.push({exerciseId: docc.id,
+         name:docc.data().name,
+         target:docc.data().target,
+         description: docc.data().description
+       });
+     });
+     return exercises;
+  }
+
+  
+  //CRUD operations on types and exercises for outdoors edition 
+  getOutdoorsTypes(){
+    const groupsRef=collection(this.firestore,`categories/outdoors/types`);
+    return collectionData(groupsRef, {idField:'typeId'}) as Observable<any[]>;
+  }
+
+  addUserOutdoorsTypes(idUser: string, type: any){
+    const categoryRef=collection(this.firestore, `users/${idUser}/categories/outdoors/types`);
+    return addDoc(categoryRef, type);
+  }
+
+  getUserOutdoorsTypes(idUser: string): Observable<any[]>{
+    const grouptRef=collection(this.firestore, `users/${idUser}/categories/outdoors/types`);
+    return collectionData(grouptRef,  {idField:'typeId'}) as Observable<any[]>;
+  }
+
+  getUserOutdoorsTypesById(idUser: string, id: string){
+    const grouptRef=doc(this.firestore, `users/${idUser}/categories/outdoors/types/${id}`);
+    return docData(grouptRef,{idField:'typeId'}) as Observable<any>;
+  }
+
+  deleteUserOutdoorsTypes(idUser: string,type: any)
+  {
+    const categoryRef=doc(this.firestore, `users/${idUser}/categories/outdoors/types/${type.typeId}`);
+    return deleteDoc(categoryRef);
+  }
+
+  updateUserOutdoorsTypes(idUser: string,type: any)
+  {
+    const categoryRef=doc(this.firestore, `users/${idUser}/categories/outdoors/types/${type.typeId}`);
+    return updateDoc(categoryRef, {name: type.name});
+  }
+  getOutdoorsActivities( typeId: string){
+    const groupsRef=collection(this.firestore,`categories/outdoors/types/${typeId}/activities`);
+    return collectionData(groupsRef) as Observable<any[]>;
+  }
+
+  addUserOutdoorsActivity(idUser: string, activity: any){
+    const categoryRef=collection(this.firestore, `users/${idUser}/outdoors-activities`);
+    return addDoc(categoryRef, activity);
+  }
+  getUserOutdoorsActivities(idUser: string): Observable<any[]>{
+    const grouptRef=collection(this.firestore, `users/${idUser}/outdoors-activities`);
+    return collectionData(grouptRef, {idField:'activityId'}) as Observable<any[]>;
+  }
+
+  getUserOutdoorsActivityById(idUser: string, id: string){
+    const grouptRef=doc(this.firestore, `users/${idUser}/outdoors-activities/${id}`);
+    return docData(grouptRef,{idField:'activityId'}) as Observable<any>;
+  }
+  deleteUserOutdoorsActivity(idUser: string, idActivity){
+    const exerciseRef=doc(this.firestore, `users/${idUser}/outdoors-activities/${idActivity}`);
+    return deleteDoc(exerciseRef);
+  }
+
+  updateUserOutdoorsActivity(idUser: string, activity: any)
+  {
+    const exerciseRed=doc(this.firestore, `users/${idUser}/outdoors-activities/${activity.activityId}`);
+    return updateDoc(exerciseRed, {name: activity.name, type: activity.type});
+  }
+  async getUserOutdoorsActivityByType(idUser: string, type: string){
+   const exercises: any[]=[];
+    const q=query(collection(this.firestore,`users/${idUser}/outdoors-activities`), where('type','==', `${type}`));
+    const querySnapshot = await getDocs(q);
+     querySnapshot.docs.forEach((docc) => {
+       exercises.push({activityId: docc.id,
+         name:docc.data().name,
+         type:docc.data().type
+       });
+     });
+     return exercises;
   }
 }

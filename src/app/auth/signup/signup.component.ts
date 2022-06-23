@@ -15,9 +15,9 @@ import { AlertProvider, LoadingProvider } from 'src/providers';
 export class SignupComponent implements OnInit {
   credential: FormGroup;
   categories=null;
-  exercises: any[] =[];
   yoga=null;
-  yogaExercises: any[]=[];
+  streching=null;
+  outdoor=null;
   constructor(private formBuilder: FormBuilder,
     private loadingControler: LoadingController,
     private authService: AuthService,
@@ -26,12 +26,17 @@ export class SignupComponent implements OnInit {
     private alertProvider: AlertProvider,
     public auth: Auth,
     public dataService: DatafirebaseService) { 
-      this.dataService.getMusclesGroups().subscribe((res)=>{
-        console.log(res);
-        this.categories=res;
+      this.dataService.getMusclesGroups().subscribe((mg)=>{
+        this.categories=mg;
         });
-        this.dataService.getYogaStyles().subscribe(r=>{
-          this.yoga=r;
+        this.dataService.getYogaStyles().subscribe(y=>{
+          this.yoga=y;
+        });
+        this.dataService.getStrechingTargets().subscribe(s=>{
+          this.streching=s;
+        });
+        this.dataService.getOutdoorsTypes().subscribe(ot=>{
+          this.outdoor=ot;
         });
     }
   get name() {
@@ -87,7 +92,34 @@ export class SignupComponent implements OnInit {
             });
           });
          });
-         console.log(this.exercises);
+
+         this.streching.forEach(strechingItem=>{
+          this.dataService.addUserStrechingTargets(this.auth.currentUser.uid,{name: strechingItem.name});
+          this.dataService.getStrechingExercises(strechingItem.categoryId).subscribe(strechingResult=>{
+            strechingResult.forEach(strechingExercise=>{
+              this.dataService.addUserStrechingExercise(this.auth.currentUser.uid, 
+                {
+                  name:strechingExercise.name,
+                  target: strechingExercise.target,
+                  description:strechingExercise.description
+                });
+            });
+          });
+         });
+
+         this.outdoor.forEach(outdoorType=>{
+          this.dataService.addUserOutdoorsTypes(this.auth.currentUser.uid,{name: outdoorType.name});
+          this.dataService.getOutdoorsActivities(outdoorType.typeId).subscribe(outdoorResult=>{
+            outdoorResult.forEach(outdoorActivity=>{
+              this.dataService.addUserOutdoorsActivity(this.auth.currentUser.uid, 
+                {
+                  name:outdoorActivity.name,
+                  type: outdoorActivity.type,
+                });
+              });
+            });
+          });
+
         loading.dismiss();
         this.router.navigateByUrl('/login', { replaceUrl: true });
       }).catch((error) => {

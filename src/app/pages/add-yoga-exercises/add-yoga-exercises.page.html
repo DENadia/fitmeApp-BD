@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add new exercise</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" color="fave">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="stacked">Exercise name</ion-label>
+    <ion-input [(ngModel)]="exerciseName"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Style</ion-label>
+    <ion-select [(ngModel)]="style">
+      <ion-select-option *ngFor="let  style of styles" [value]="style.name">{{style.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Exercise description</ion-label>
+    <ion-textarea [(ngModel)]="description"></ion-textarea>
+  </ion-item>
+<ion-button expand="block" color="fave" (click)="addExercise()">Add</ion-button>
+</ion-content>

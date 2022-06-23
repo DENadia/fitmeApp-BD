@@ -27,23 +27,6 @@ export class DashboardComponent implements OnInit {
       this.today = Date.now();
   }
   addRoutine(){
-    this.dataFirebase.getYogaStyles().subscribe(res=>{
-      console.log(res);
-      res.forEach(r=>{
-        this.dataFirebase.getYogaExercises(r.categoryId).subscribe(ress=>
-          {
-            console.log(ress);
-            ress.forEach(re=>{
-              this.dataFirebase.addYogaExercise(r.categoryId, {
-                name:re.name,
-                style: r.categoryId,
-                description: re.description
-              });
-            });
-          });
-      });
-    });
-    
   }
  
 }

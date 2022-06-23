@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="fave"></ion-back-button>
+    </ion-buttons>
+    <ion-button slot="end" fill="clear"  (click)="addStyle()">
+      <ion-icon name="add" color="fave"></ion-icon>
+    </ion-button>
+    <ion-title>Yoga styles</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="card-background-page">
+  <ion-list>
+    <ion-item  *ngFor="let style of styles"  >
+      <ion-label (click)="styleExercise(style)" > {{style.name}} </ion-label>
+      <ion-icon name="ellipsis-vertical" slot="end"color="fave"  (click)="openStyle(style)"></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>
