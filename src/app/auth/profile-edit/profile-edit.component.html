@@ -1,7 +1,42 @@
 <ion-header>
   <ion-toolbar>
-    
+    <ion-title>Calories calculator</ion-title>
   </ion-toolbar>
+</ion-header>
+
 <ion-content>
-  
+<div>
+  <ion-item>
+    <ion-label position="floating" color="fave">Gender</ion-label>
+    <ion-select [(ngModel)]="gender">
+      <ion-select-option>Male</ion-select-option>
+      <ion-select-option>Female</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating" color="fave">How old are you?</ion-label>
+    <ion-input type="number" [(ngModel)]="age"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating" color="fave">How tall are you? (cm)</ion-label>
+    <ion-input type="number" [(ngModel)]="height"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating" color="fave">How much do you weight?(kg)</ion-label>
+    <ion-input type="number" [(ngModel)]="weight"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label color="fave" position="floating">How active are you</ion-label>
+    <ion-select [(ngModel)]="activeCoef">
+      <ion-select-option *ngFor="let  coef of coefs" [value]="coef.name">{{coef.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label color="fave" position="floating">What goal do you have?</ion-label>
+    <ion-select [(ngModel)]="goal">
+      <ion-select-option *ngFor="let  goal of goals" [value]="goal">{{goal}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+</div>
+<ion-button  color="fave" (click)="calculate()">Calculate my calories</ion-button>
 </ion-content>

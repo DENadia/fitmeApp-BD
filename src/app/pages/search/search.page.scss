@@ -1,0 +1,38 @@
+:host {
+  .search {
+    background: #ffffff;
+    width: 0;
+    overflow: hidden;
+    transition: ease all 0.5s;
+    -moz-transition: ease all 0.5s;
+    -ms-transition: ease all 0.5s;
+    -webkit-transition: ease all 0.5s;
+    position: fixed;
+    display: flex;
+    align-content: center;
+    height: 100%;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    z-index: 999;
+  }
+
+  .active {
+    width: 100%;
+    opacity: 1;
+  }
+
+  .safe {
+    margin-top: constant(safe-area-inset-top);
+    margin-top: env(safe-area-inset-top);
+  }
+
+  ion-item {
+    --background: transparent !important;
+    margin: 0px !important;
+  }
+
+  ion-searchbar {
+    padding-bottom: 0px !important;
+  }
+}

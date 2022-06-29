@@ -325,4 +325,13 @@ export class DatafirebaseService {
      });
      return exercises;
   }
+
+  addUserCaloriesData(idUser: string, caloriesData: any){
+    const categoryRef=collection(this.firestore, `users/${idUser}/calories-data`);
+    return addDoc(categoryRef, caloriesData);
+  }
+  getUserCaloriesData(idUser: string): Observable<any[]>{
+    const grouptRef=collection(this.firestore, `users/${idUser}/calories-data`);
+    return collectionData(grouptRef, {idField:'caloryId'}) as Observable<any[]>;
+  }
 }

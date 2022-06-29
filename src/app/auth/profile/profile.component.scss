@@ -10,3 +10,66 @@ h6{
   font-weight: 500;
   color: darkgrey;
 }
+ion-content{
+  --ion-background-color:  #f2f2f2
+  ;
+}
+
+ion-header{
+  position: absolute;
+  --ion-background-color: #3e6777;
+}
+ion-toolbar{
+  --ion-background-color:#3e6777;
+  --opacity:0;
+}
+ion-title{
+  font-size: 20px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-style: normal;
+  font-weight: lighter;
+  color: #fff;
+}
+.container{
+  width: 100%;
+  height: 200px;
+  display: block;
+  background-color: #0b6b4b;
+}
+.overlay{
+  position:relative;
+  text-align: center;
+  top: 60%;
+}
+ion-avatar{
+  height:100px;
+  width: 100px;
+  margin:auto;
+  border: 4px solid #f2f2f2;
+}
+.details{
+  margin-top: 40px;
+  --ion-background-color: transparent !important;
+  box-shadow: none;
+  text-align:center;
+  ion-item{
+    text-align: center;
+    color: #767676;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 15px;
+    border-radius: 5px;
+    height: 40px;
+    --min-height:35px;
+    margin-bottom: 15px;
+    // --border-width: 10px 0px 15px 3px;
+    // --border-color: #0b6b4b;
+   
+  }
+  ion-label{
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+}

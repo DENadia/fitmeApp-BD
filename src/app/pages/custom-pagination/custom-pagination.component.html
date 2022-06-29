@@ -1,0 +1,8 @@
+<ion-row>
+  <div class="pagination">
+    <ul>
+      <li *ngFor="let item of pageData;let i=index" [class.active]="selectIndex===i"
+          (click)="onPagination(i)">{{i+1}}</li>
+    </ul>
+  </div>
+</ion-row>

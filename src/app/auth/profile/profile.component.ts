@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
   user=null;
   userId=null;
   email="";
+  userName="";
   constructor(
     private firestore: Firestore, 
     private ath: Auth,
@@ -31,6 +32,7 @@ export class ProfileComponent implements OnInit {
         this.user=res;
         console.log(this.user.userEmail);
         this.email=this.user.userEmail;
+        this.userName=this.user.userName;
       });
     }
     
@@ -38,14 +40,14 @@ export class ProfileComponent implements OnInit {
 
  ngOnInit(){
     }
-    async editProfile()
+    async openSurvey()
     {
       if(this.user){
         const modal=await this.modalCtrl.create({
           component: ProfileEditComponent,
           componentProps: {user: this.user},
           breakpoints:[0,0.5,0.8],
-          initialBreakpoint:0.5,
+          initialBreakpoint:0.8,
         });
         modal.present();
       }

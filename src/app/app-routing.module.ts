@@ -158,6 +158,10 @@ loadChildren: ()=> import ('./pages/workout/workout.module').then(m=>m.WorkoutMo
   {
     path: 'update-delete-outdoors-activity',
     loadChildren: () => import('./pages/update-delete-outdoors-activity/update-delete-outdoors-activity.module').then( m => m.UpdateDeleteOutdoorsActivityPageModule)
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./pages/search/search.module').then( m => m.SearchPageModule)
   }
 ];
 @NgModule({
