@@ -162,7 +162,20 @@ loadChildren: ()=> import ('./pages/workout/workout.module').then(m=>m.WorkoutMo
   {
     path: 'search',
     loadChildren: () => import('./pages/search/search.module').then( m => m.SearchPageModule)
-  }
+  },
+  {
+    path: 'dashboard/create-routine',
+    loadChildren: () => import('./pages/create-routine/create-routine.module').then( m => m.CreateRoutinePageModule)
+  },
+  {
+    path: 'muscles-group-for-routine',
+    loadChildren: () => import('./pages/muscles-group-for-routine/muscles-group-for-routine.module').then( m => m.MusclesGroupForRoutinePageModule)
+  },
+  {
+    path: 'edit-routine',
+    loadChildren: () => import('./pages/edit-routine/edit-routine.module').then( m => m.EditRoutinePageModule)
+  },
+ 
 ];
 @NgModule({
   imports: [

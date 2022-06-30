@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-label color="fave" slot="start" class="label-finish" (click)="dismiss()">Finish</ion-label>
+    <ion-icon name="timer-outline" slot="end" color="fave"></ion-icon>
+    <ion-icon name="arrow-down" slot="end" color="fave" (click)="dismissModal()"></ion-icon>
+    <ion-title>{{today | date: 'dd MMMM'}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <form [formGroup]="routineForm" (ngSubmit)="onSubmit()">
+
+    <div class="form">
+      <input type="text" formControlName="routineName" placeholder=" " id="routineName" class="form__input">
+      <label for="routineName" class="form__label">Name</label>
+    </div>
+
+
+    <div formArrayName="exercises">
+      <div *ngFor="let exercise of exercises().controls; let routineIndex=index" class="exercise-container">
+        <div [formGroupName]="routineIndex">
+          <div class="set"> <ion-input type="text" formControlName="name" class="exercise-title-input"></ion-input></div>
+          <div class="set" style="float: right;"> <ion-icon name="close-circle-outline"slot="end" color="fave" (click)="removeExercise(routineIndex)"></ion-icon></div>
+         
+          <!-- <input type="text" formControlName="name"> -->
+          
+          <div formArrayName="sets">
+            <div *ngFor="let set of exerciseSets(routineIndex).controls; let setIndex=index">
+              <div [formGroupName]="setIndex">
+
+                <div class="set">
+                  <div class="numberCircle"><span> {{setIndex+1}}</span></div>
+                </div>
+
+                <div class="set"> <label for="weight">Weight</label>
+                  <input type="number" formControlName="weight" class="form-input-small" id="weight">
+                </div>
+
+                <div class="set"><label for="reps">Reps</label>
+                  <input type="number" formControlName="reps" class="form-input-small" id="reps">
+                </div>
+                <div class="set">
+                  <label for="note">Note</label>
+                  <input type="textarea" formControlName="notes" class="form-input-large" id="note">
+                </div>
+
+                <div class="set">
+                 <ion-icon name="close" color="fave" (click)="removeExerciseSet(routineIndex,setIndex)">
+                  </ion-icon>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <label class="add-button" (click)="addExerciseSet(routineIndex)">
+            Add Set
+          </label>
+        </div>
+      </div>
+      <div class="wrapper">
+        <button type="button" (click)="open()" class="form-button">Add Exercise</button>
+      </div>
+    </div>
+  </form>
+</ion-content>

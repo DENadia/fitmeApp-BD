@@ -327,11 +327,37 @@ export class DatafirebaseService {
   }
 
   addUserCaloriesData(idUser: string, caloriesData: any){
-    const categoryRef=collection(this.firestore, `users/${idUser}/calories-data`);
-    return addDoc(categoryRef, caloriesData);
+    const categoryRef=doc(this.firestore, `users/${idUser}/calories-data/calories`);
+    return setDoc(categoryRef, caloriesData);
   }
-  getUserCaloriesData(idUser: string): Observable<any[]>{
-    const grouptRef=collection(this.firestore, `users/${idUser}/calories-data`);
-    return collectionData(grouptRef, {idField:'caloryId'}) as Observable<any[]>;
+  getUserCaloriesData(idUser: string): Observable<any>{
+    const grouptRef=doc(this.firestore, `users/${idUser}/calories-data/calories`);
+    return docData(grouptRef, {idField:'caloryId'}) as Observable<any>;
+  }
+  updateUserCaloriesData(idUser: string, caloriesData: any)
+  {
+    const exerciseRed=doc(this.firestore, `users/${idUser}/calories-data/calories`);
+    return updateDoc(exerciseRed, caloriesData);
+  }
+  addUserRoutine(idUser: string,routine)
+  {
+    const categoryRef=doc(this.firestore, `users/${idUser}/routines/${routine.routineName}`);
+    return setDoc(categoryRef, routine);
+ 
+  }
+  getUserRoutine(idUser: string)
+  {
+    const categoryRef=collection(this.firestore, `users/${idUser}/routines`);
+    return collectionData(categoryRef, {idField:'routineId'}) as Observable<any[]>;
+ 
+  }
+  updateUserRoutine(idUser: string, routine: any)
+  {
+    const categoryRef=doc(this.firestore, `users/${idUser}/routines/${routine.routineId}`);
+    return updateDoc(categoryRef, routine);
+  }
+  deleteUserRoutine(idUser: string, routine){
+    const exerciseRef=doc(this.firestore, `users/${idUser}/routines/${routine.routineId}`);
+    return deleteDoc(exerciseRef);
   }
 }

@@ -37,6 +37,13 @@
       <ion-select-option *ngFor="let  goal of goals" [value]="goal">{{goal}}</ion-select-option>
     </ion-select>
   </ion-item>
+  <ion-item>
+    <ion-label color="fave" position="floating">What do you prefer?</ion-label>
+    <ion-select [(ngModel)]="fatCoef">
+      <ion-select-option *ngFor="let  fat of fats" [value]="fat.name">{{fat.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+ 
 </div>
 <ion-button  color="fave" (click)="calculate()">Calculate my calories</ion-button>
 </ion-content>

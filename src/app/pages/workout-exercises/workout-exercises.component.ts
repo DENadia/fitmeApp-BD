@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { AlertController, ModalController } from '@ionic/angular';
 import { DatafirebaseService } from 'src/app/services/datafirebase.service';
+import { SubjectInServiceService } from 'src/app/services/subject-in-service.service';
 import { EditExercisePage } from '../edit-exercise/edit-exercise.page';
 import { ModalPage } from '../modal/modal.page';
 import { UpdateDeleteExercisePage } from '../update-delete-exercise/update-delete-exercise.page';
@@ -32,7 +33,8 @@ export class WorkoutExercisesComponent implements OnInit {
         });
     }
    }
-  ngOnInit() {}
+  ngOnInit() {
+  }
   public goToDetails(name): void{
     this.router.navigateByUrl(`/${name}`);
   }
@@ -55,4 +57,5 @@ export class WorkoutExercisesComponent implements OnInit {
     });
     return await modal.present();
   }
+ 
 }

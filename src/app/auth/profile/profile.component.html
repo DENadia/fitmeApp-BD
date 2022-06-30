@@ -39,7 +39,25 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
-  <ion-card>
-    
+  <ion-card *ngIf="existing===1">
+    <ion-card-header>
+      <ion-card-title>
+       Calories goal
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item lines="none">
+        <ion-label>{{calories}} calories</ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Fats: {{fat}} g</ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Protein: {{protein}} g</ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Carbs: {{carbs}} g</ion-label>
+      </ion-item>
+    </ion-card-content>
   </ion-card>
 </ion-content>

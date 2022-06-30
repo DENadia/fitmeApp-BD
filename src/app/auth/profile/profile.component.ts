@@ -16,6 +16,11 @@ export class ProfileComponent implements OnInit {
   userId=null;
   email="";
   userName="";
+  fat: number;
+  calories: number;
+  protein: number;
+  carbs: number;
+  existing=0;
   constructor(
     private firestore: Firestore, 
     private ath: Auth,
@@ -39,6 +44,17 @@ export class ProfileComponent implements OnInit {
   }
 
  ngOnInit(){
+  this.dataService.getUserCaloriesData(this.userId).subscribe(res=>{
+    console.log(res);
+    if(res)
+    {
+      this.existing=1;
+      this.fat=res.fat;
+      this.protein=res.protein;
+      this.calories=res.calories;
+      this.carbs=res.carb;
+    }
+  });
     }
     async openSurvey()
     {
