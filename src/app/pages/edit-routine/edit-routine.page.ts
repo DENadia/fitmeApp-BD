@@ -117,8 +117,8 @@ export class EditRoutinePage implements OnInit {
 
 options()
 {
-  this.dataService.deleteUserRoutine(this.auth.currentUser.uid, this.routine);
-  this.showAlert('Great!', 'Routine deleted! The page will close');
+  
+  this.showAlertDelete("Delete routine", "Are you sure you want to delete your routine?");
 }
 
 
@@ -131,6 +131,27 @@ async showAlert(header, message) {
         text:'Ok',
         handler:()=>{
           this.modalCtrl.dismiss();
+        }
+      }
+    ]
+  });
+  await alert.present();
+}
+async showAlertDelete(header, message) {
+  const alert = await this.alertCtrl.create({
+    header,
+    message,
+    buttons: [
+      {
+        text:'Cancel',
+        role:'cancel',
+      },
+      {
+        text:'Ok',
+        handler:()=>{
+          this.dataService.deleteUserRoutine(this.auth.currentUser.uid, this.routine);
+          this.showAlert('Great!', 'Routine deleted! The page will close');
+
         }
       }
     ]

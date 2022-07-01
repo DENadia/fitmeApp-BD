@@ -1,14 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-label color="fave" slot="start" class="label-finish" (click)="dismiss()">Finish</ion-label>
-    <ion-icon name="timer-outline" slot="end" color="fave"></ion-icon>
+    <ion-icon name="timer-outline" slot="end" color="fave" (click)="openTimer()"></ion-icon>
     <ion-icon name="arrow-down" slot="end" color="fave" (click)="dismissModal()"></ion-icon>
     <ion-title>{{today | date: 'dd MMMM'}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  
 
   <form [formGroup]="routineForm" (ngSubmit)="onSubmit()">
 

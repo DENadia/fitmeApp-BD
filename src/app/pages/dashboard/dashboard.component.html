@@ -7,19 +7,26 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
-  <ion-card *ngFor="let routine of routines" (click)="goToEdit(routine)">
-    <ion-card-title>{{routine.routineName}} 
-    </ion-card-title>
-    <ion-card-content>
-      <ion-list lines="none" >
-        <ion-item *ngFor="let exercise of routine.exercises">
-          <ion-label>
-            {{exercise.sets.length}} x {{exercise.name}}
-          </ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+  <div *ngIf="routines.length===0" class="log">
+    <ion-label class="logRoutine">Log in your routine</ion-label>
+    <ion-icon name="refresh-outline" class="logRoutine"></ion-icon>
+  </div>
+  <div *ngIf="routines.length!==0">
+    <ion-card *ngFor="let routine of routines" (click)="goToEdit(routine)">
+      <ion-card-title>{{routine.routineName}} 
+      </ion-card-title>
+      <ion-card-content>
+        <ion-list lines="none" >
+          <ion-item *ngFor="let exercise of routine.exercises">
+            <ion-label>
+              {{exercise.sets.length}} x {{exercise.name}}
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  
   <ion-fab horizontal="end" slot="fixed" vertical="bottom" class="fab-right">
     <ion-fab-button color="fave" (click)="addRoutine()">
         <ion-icon name="add" size="large"></ion-icon>

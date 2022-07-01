@@ -5,6 +5,7 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { DatafirebaseService } from 'src/app/services/datafirebase.service';
 import { SubjectInServiceService } from 'src/app/services/subject-in-service.service';
 import { MusclesGroupForRoutinePage } from '../muscles-group-for-routine/muscles-group-for-routine.page';
+import { TimerComponent } from '../timer/timer.component';
 import { WorkoutComponent } from '../workout/workout.component';
 
 @Component({
@@ -89,10 +90,13 @@ export class CreateRoutinePage implements OnInit {
   {
     const routine=this.routineForm.value;
     if(routine.routineName===''){
-      routine.routineName='Routine';
+      this.showAlertNameRoutine("Routine Name missing!", "Please provide a name");
     }
-    this.dataService.addUserRoutine(this.auth.currentUser.uid, this.routineForm.value);
-    this.modalCtrl.dismiss();    
+    else{
+      this.dataService.addUserRoutine(this.auth.currentUser.uid, this.routineForm.value);
+    this.modalCtrl.dismiss();  
+    }
+      
   }
   dismissModal()
   {
@@ -110,6 +114,15 @@ export class CreateRoutinePage implements OnInit {
   console.log(data);
   this.active=data.active;
   this.addExercise(this.active);
+ }
+ async openTimer()
+ {
+   const modal=await this.modalCtrl.create({
+     component: TimerComponent,
+     breakpoints:[0,0.5,0.8],
+        initialBreakpoint:0.8
+   });
+   await modal.present();
  }
  async showAlert(header, message) {
   const alert = await this.alertCtrl.create({
@@ -130,4 +143,15 @@ export class CreateRoutinePage implements OnInit {
   });
   await alert.present();
 }
+async showAlertNameRoutine(header, message) {
+  const alert = await this.alertCtrl.create({
+    header,
+    message,
+    buttons: [
+      {
+        text:'Ok'
+      }
+    ]
+  });
+  await alert.present();}
 }
