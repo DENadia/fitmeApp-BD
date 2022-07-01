@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DatasqliteService } from './datasqlite.service';
+import { AvatarService } from './avatar.service';
 
-describe('DatasqliteService', () => {
-  let service: DatasqliteService;
+describe('AvatarService', () => {
+  let service: AvatarService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DatasqliteService);
+    service = TestBed.inject(AvatarService);
   });
 
   it('should be created', () => {

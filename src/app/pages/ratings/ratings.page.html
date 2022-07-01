@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Ratings
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="dark"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+    <div  *ngFor="let exercise of exercises; let setIndex=index" class="items">
+<div id="box1" class="Left"><ion-label class="exercise">{{exercise.name}}</ion-label></div>
+
+<div id="box2" class="Right"><ngx-star-rating [id]="exercise.name" ></ngx-star-rating></div>
+      <!-- <div class="display"> </div>
+      <div class="display"><ngx-star-rating [id]="exercise.name" class="rating"></ngx-star-rating></div> -->
+    </div>
+<div><ion-button color="fave" expand="center">Rate</ion-button></div>
+</ion-content>

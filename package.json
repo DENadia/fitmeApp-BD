@@ -31,6 +31,8 @@
     "@ionic/angular": "^6.0.0",
     "@ionic/pwa-elements": "^3.1.1",
     "ngx-gauge": "^5.0.0",
+    "ngx-star-rating": "^2.1.0",
+    "ngx-stars": "^1.6.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { ModalController, PickerController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
+import { AvatarService } from 'src/app/services/avatar.service';
 import { DatafirebaseService } from 'src/app/services/datafirebase.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { DatafirebaseService } from 'src/app/services/datafirebase.service';
   styleUrls: ['./profile-edit.component.scss'],
 })
 export class ProfileEditComponent implements OnInit {
+  profile=null;
   @Input() user: any;
   email='';
   name='';
@@ -66,7 +68,10 @@ export class ProfileEditComponent implements OnInit {
   constructor(private auth: AuthService,
     private modalCtrl: ModalController,
     private dataService: DatafirebaseService,
-    private authC: Auth) { }
+    private authC: Auth,
+    ) { 
+    
+    }
 
   ngOnInit() {
     this.email=this.user.userEmail;
@@ -83,9 +88,6 @@ export class ProfileEditComponent implements OnInit {
         this.weight=res.weight;
         this.goal=res.goal;
         this.fatCoef=res.fatCoef
-      }
-      else{
-        console.log("nada");
       }
     });
   }
@@ -135,7 +137,14 @@ export class ProfileEditComponent implements OnInit {
 
   calories(){
     let calories=0;
-    calories=66.5+(13.75*this.weight)+(5.003*this.height)-(6.755*this.age);
+    if(this.gender==='Male'){
+      calories=66.5+(13.75*this.weight)+(5.003*this.height)-(6.755*this.age);
+    }
+    else if(this.gender==='Female')
+    {
+      calories=655.1+(9.563*this.weight)+(1.850*this.height)-(4.676*this.age);
+    }
+    
     calories=Math.round(calories);
     let index=this.coefs.find(elem=>{
       return elem.name===this.activeCoef

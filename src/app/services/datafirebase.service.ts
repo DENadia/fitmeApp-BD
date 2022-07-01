@@ -360,4 +360,9 @@ export class DatafirebaseService {
     const exerciseRef=doc(this.firestore, `users/${idUser}/routines/${routine.routineId}`);
     return deleteDoc(exerciseRef);
   }
+  getExercisesToBeRated(): Observable<any>
+  {
+    const categoriesRef=collection(this.firestore, 'rate');
+    return collectionData(categoriesRef, {idField: 'idRate'}) as Observable<any[]>;
+  }
 }

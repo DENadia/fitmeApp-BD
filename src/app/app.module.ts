@@ -14,11 +14,13 @@ import { provideFunctions,getFunctions } from '@angular/fire/functions';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import{ HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxStarRatingModule } from 'ngx-star-rating';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, 
     HttpClientModule,
+    NgxStarRatingModule,
     FormsModule,
     ReactiveFormsModule,
     IonicModule.forRoot(),

@@ -1,0 +1,66 @@
+.rating-order-wrp {
+    .d-flex {
+        display: flex;
+    }
+    .align-items-center {
+        align-items: center;
+    }
+    .w-50 {
+        width: 50%;
+    }
+    .rating-list {
+        border-top: 1px solid #ddd;
+        padding: 15px 0;
+    }
+}
+
+
+/**Rating**/
+
+::ng-deep label.star {
+    padding: 0 5px !important;
+    font-size: 20px !important;
+    color: #ddd !important;
+    &::before {
+        content: "\f005" !important;
+    }
+    &:hover {
+        transform: rotate(0deg) scale(1.2) !important;
+    }
+}
+.items{
+  margin-top: 20px;
+}
+.exercise{
+  font-size: 20px;
+font-weight: 400;
+color:black
+}
+.Left
+{
+    width:40%;
+    margin-left: 10px;
+    height: 50px;
+    align-items: center;
+    float: left;
+}
+
+.center
+{
+    width: 250px;
+    height: 250px;
+    background-color: Red;
+    float: left;
+}
+
+.Right
+{
+    width: 40%;
+    height: 50px;
+    float: left;
+    clear: right;
+    margin-right: 10px;
+}
+.button{
+  text-align: center;
+}

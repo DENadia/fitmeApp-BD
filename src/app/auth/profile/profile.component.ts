@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
-import { AlertController, ModalController, ModalOptions } from '@ionic/angular';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { AlertController, LoadingController, ModalController, ModalOptions } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
+import { AvatarService } from 'src/app/services/avatar.service';
 import { DatafirebaseService } from 'src/app/services/datafirebase.service';
 import { ProfileEditComponent } from '../profile-edit/profile-edit.component';
 
@@ -12,6 +14,7 @@ import { ProfileEditComponent } from '../profile-edit/profile-edit.component';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  profile=null;
   user=null;
   userId=null;
   email="";
@@ -27,7 +30,10 @@ export class ProfileComponent implements OnInit {
     private alertController: AlertController,
     private dataService: DatafirebaseService,
     private afth: AuthService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private avatar: AvatarService,
+    private loadingCtrl:LoadingController,
+    private alertCtrl: AlertController
   ) {
     this.userId=this.ath.currentUser.uid;
     if(this.userId)
@@ -39,8 +45,11 @@ export class ProfileComponent implements OnInit {
         this.email=this.user.userEmail;
         this.userName=this.user.userName;
       });
-    }
     
+    }
+    this.avatar.getUserProfile().subscribe(data=>{
+      this.profile=data;
+    });
   }
 
  ngOnInit(){
@@ -66,6 +75,32 @@ export class ProfileComponent implements OnInit {
           initialBreakpoint:0.8,
         });
         modal.present();
+      }
+    }
+    async changeImage(){
+      const image=await Camera.getPhoto({
+        quality: 90,
+        allowEditing:false,
+        resultType:CameraResultType.Base64,
+        source:CameraSource.Photos,
+      });
+      console.log(image);
+      if(image){
+        const loading=await this.loadingCtrl.create();
+        await loading.present();
+
+        const result= await this.avatar.uploadImage(image);
+        loading.dismiss();
+        console.log(result.message);
+        if(!result){
+          console.log(result.message);
+          const alert=await this.alertCtrl.create({
+            header:'Upload failed',
+            message:'There was a problem uploading your avatar.',
+            buttons: ['OK'],
+          });
+          await alert.present();
+        }
       }
     }
 }

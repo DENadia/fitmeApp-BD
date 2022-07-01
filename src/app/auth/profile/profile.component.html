@@ -12,9 +12,14 @@
  
   <div class="container">
     <div class="overlay">
-      <ion-avatar>
-        <img src="assets/backgrounds/greatn.jpg">
-      </ion-avatar>
+      <!-- <ion-avatar (click)="changeImage()">
+        <img *ngIf="profile?.imageUrl; else placeholder_avatar;" [src]="profile.imageUrl">
+        <ng-template #placeholder_avatar>
+          <div>
+            <p>Select avatar</p>
+          </div>
+        </ng-template>
+      </ion-avatar> -->
     </div>
   </div>
   <ion-card class="details">

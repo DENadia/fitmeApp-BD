@@ -175,6 +175,10 @@ loadChildren: ()=> import ('./pages/workout/workout.module').then(m=>m.WorkoutMo
     path: 'edit-routine',
     loadChildren: () => import('./pages/edit-routine/edit-routine.module').then( m => m.EditRoutinePageModule)
   },
+  {
+    path: 'ratings',
+    loadChildren: () => import('./pages/ratings/ratings.module').then( m => m.RatingsPageModule)
+  },
  
 ];
 @NgModule({
